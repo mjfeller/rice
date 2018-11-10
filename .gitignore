@@ -1,11 +1,2 @@
 # mpd
-.config/mpd/playlists
-.config/mpd/database
-.config/mpd/log
-.config/mpd/pid
-.config/mpd/state
-.config/mpd/sticker.sql
 .config/ncmpcpp/lyrics
-
-.vim/plugged
-.vim/.netrwhist

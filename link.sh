@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function link {
-	ln -sFf $1 $HOME/$1
+	ln -Ff $1 $HOME/$1
 }
 
 function link_config {
