@@ -1,0 +1,38 @@
+#define bg #282828
+#define red #cc241d
+#define green #98971a
+#define yellow #d79921
+#define blue #458588
+#define purple #b16286
+#define aqua #689d68
+#define gray #a89984
+#define DARKGRAY #1d2021
+
+
+rofi.width:         40
+rofi.combi-modi:    window,drun,run
+rofi.font:          Fira Mono 22
+rofi.modi:          combi,drun,run
+
+rofi.lines:         8
+rofi.location:      0
+rofi.line-padding:  10
+rofi.bw:            10
+rofi.padding:       20
+
+rofi.yoffset:       -300
+rofi.xoffset:       0
+
+rofi.fixed-num-lines: false
+
+! Color scheme
+! State:           'bg',     'fg',   'bgalt',  'hlbg',  'hlfg'
+rofi.color-normal:  #1d2021, #ebdbb2, #1d2021, #3c3836, #ebdbb2
+rofi.color-urgent:  #1d2021, #ebdbb2, #eee8d5, #dc322f, #fdf6e3
+rofi.color-active:  #fdf6e3, #268bd2, #eee8d5, #268bd2, #fdf6e3
+
+!                  'background', 'border', 'separator'
+rofi.color-window:  #1d2021,     #3c3836,  #3c3836
+
+rofi.separator-style:     solid
+rofi.hide-scrollbar:      true
