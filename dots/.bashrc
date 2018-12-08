@@ -23,6 +23,7 @@ alias ll="ls -lh"
 alias l="ls -la"
 alias emacs="TERM=xterm-256color emacs"
 alias q="exit"
+alias :q="exit"
 alias neo="clear && neofetch"
 alias notify='terminal-notifier -title "Terminal" -message "Done with taks"'
 alias weather="curl wttr.in/\~Boulder+Colorado"
@@ -34,6 +35,7 @@ alias yt="youtube-dl"
 # Kubernetes
 alias kc="kubectl --kubeconfig=$HOME/cluster.config"
 alias helm="helm --kubeconfig=$HOME/cluster.config"
+export CORE=$GOPATH/src/gitlab.com/redeam/core
 alias c="cd $CORE"
 
 ## Kubernetes
@@ -100,7 +102,6 @@ export PATH=$PATH:$HOME/Library/Haskell/bin
 ## Go
 export GOPATH=$HOME/prog/go
 export PATH=$PATH:$GOPATH/bin
-export CORE=$GOPATH/src/gitlab.com/redeam/core
 
 ## Rust
 export PATH=$PATH:$HOME/.cargo/bin
@@ -140,3 +141,6 @@ else
         bind '"\e^":'
 fi
 }
+
+# auto command to cd without cd
+shopt -s autocd
