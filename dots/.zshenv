@@ -1,6 +1,5 @@
 export TERMINAL=$HOME/bin/alacritty
 export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:$HOME/.bin
 
 ## ZSH Config
 export ZDOTDIR=$HOME
@@ -28,9 +27,11 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$HOME/Library/Haskell/bin
 
 ## Go
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/prog/go
 export PATH=$PATH:$GOPATH/bin
 export CORE=$GOPATH/src/gitlab.com/redeam/core
+export OPS=$GOPATH/src/gitlab.com/redeam/corestar
 
 ## Docker
 export DOCKER_HIDE_LEGACY_COMMANDS=1

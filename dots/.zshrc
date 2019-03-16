@@ -14,25 +14,18 @@ alias f="fzf --preview=\"head -$LINES {}\""
 alias fz="vim \$(f)"
 alias vi=vim
 alias yt="youtube-dl"
+alias r="ranger"
 
 # Kubernetes
 alias kc="kubectl --kubeconfig=$HOME/cluster.config"
 alias helm="helm --kubeconfig=$HOME/cluster.config"
 alias c="cd $CORE"
+alias o="cd $OPS"
 
 ## Kubernetes
 function gdep {
     godepgraph -o gitlab.com/redeam -s gitlab.com/redeam/core/$1 | dot -Tpng -o /tmp/dep.png
     open /tmp/dep.png
-}
-
-function gp {
-  kubectl --kubeconfig=$HOME/cluster.config get pods | egrep -o  "$1.*Running" | egrep -o "$1[^ ]*" | head -1
-}
-
-function kcforward {
-  POD=`gp $1`
-  kubectl --kubeconfig=$HOME/cluster.config port-forward $POD $2:8001
 }
 
 alias kt="ktail --kubeconfig=$HOME/cluster.config -t '
@@ -46,6 +39,17 @@ function fh {
 
 function fhc {
   echo -n $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//') | pbcopy
+}
+
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
 }
 
 # coloured manuals
@@ -63,15 +67,22 @@ man() {
 
 autoload -U +X bashcompinit && bashcompinit
 
-# if [ -z $TMUX ]
-# then
-#         tmux ls && read tmux_session && tmux attach -t ${tmux_session:-default} || tmux new -s ${tmux_session:-default}
-# fi
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    setxkbmap -layout us -option ctrl:nocaps
 
-setxkbmap -layout us -option ctrl:nocaps
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/home/mjf/prog/google-cloud-sdk/path.zsh.inc' ]; then
+        . '/home/mjf/prog/google-cloud-sdk/path.zsh.inc';
+    fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/mjf/prog/google-cloud-sdk/path.zsh.inc' ]; then . '/home/mjf/prog/google-cloud-sdk/path.zsh.inc'; fi
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/home/mjf/prog/google-cloud-sdk/completion.zsh.inc' ]; then
+        . '/home/mjf/prog/google-cloud-sdk/completion.zsh.inc';
+    fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/mjf/prog/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/mjf/prog/google-cloud-sdk/completion.zsh.inc'; fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    if [ -f '/Users/markfeller/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then
+        source '/Users/markfeller/Downloads/google-cloud-sdk/completion.zsh.inc';
+    fi
+fi
+
