@@ -24,4 +24,3 @@ cmake
 gcc
 go
 pyenv
-ipython
