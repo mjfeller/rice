@@ -31,7 +31,6 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/prog/go
 export PATH=$PATH:$GOPATH/bin
 export CORE=$GOPATH/src/gitlab.com/redeam/core
-export OPS=$GOPATH/src/gitlab.com/redeam/corestar
 
 ## Docker
 export DOCKER_HIDE_LEGACY_COMMANDS=1
@@ -50,3 +49,12 @@ export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 
 ## Misc
 export PATH="$HOME/.scripts:$PATH"
+
+## colored man pages
+export LESS_TERMCAP_mb=$(printf "\e[1;31m")
+export LESS_TERMCAP_md=$(printf "\e[1;31m")
+export LESS_TERMCAP_me=$(printf "\e[0m")
+export LESS_TERMCAP_se=$(printf "\e[0m")
+export LESS_TERMCAP_so=$(printf "\e[1;44;33m")
+export LESS_TERMCAP_ue=$(printf "\e[0m")
+export LESS_TERMCAP_us=$(printf "\e[1;32m")

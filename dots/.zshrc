@@ -15,12 +15,12 @@ alias fz="vim \$(f)"
 alias vi=vim
 alias yt="youtube-dl"
 alias r="ranger"
+alias pjq="pbpaste | jq"
+alias j="jira"
 
 # Kubernetes
-alias kc="kubectl --kubeconfig=$HOME/cluster.config"
-alias helm="helm --kubeconfig=$HOME/cluster.config"
+alias kc="kubectl"
 alias c="cd $CORE"
-alias o="cd $OPS"
 
 ## Kubernetes
 function gdep {
@@ -52,37 +52,12 @@ fkill() {
   fi
 }
 
-# coloured manuals
-man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-    man "$@"
-}
-
 autoload -U +X bashcompinit && bashcompinit
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     setxkbmap -layout us -option ctrl:nocaps
-
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '/home/mjf/prog/google-cloud-sdk/path.zsh.inc' ]; then
-        . '/home/mjf/prog/google-cloud-sdk/path.zsh.inc';
-    fi
-
-    # The next line enables shell command completion for gcloud.
-    if [ -f '/home/mjf/prog/google-cloud-sdk/completion.zsh.inc' ]; then
-        . '/home/mjf/prog/google-cloud-sdk/completion.zsh.inc';
-    fi
-
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    if [ -f '/Users/markfeller/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then
-        source '/Users/markfeller/Downloads/google-cloud-sdk/completion.zsh.inc';
-    fi
 fi
 
+
+if [ -f '$HOME/prog/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/prog/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/prog/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/prog/google-cloud-sdk/completion.zsh.inc'; fi

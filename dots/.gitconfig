@@ -1,0 +1,12 @@
+[user]
+    name = Mark Feller
+    email = mark.feller@member.fsf.org
+    signingkey = 3DB408B4A92778E7993915A18CD9D80C3B2E6F5F
+[gpg]
+    program = gpg
+[commit]
+    gpgsign = true
+[url "ssh://git@gitlab.com/"]
+    insteadOf = https://gitlab.com/
+[url "ssh://git@bitbucket.org/"]
+    insteadOf = https://bitbucket.org/

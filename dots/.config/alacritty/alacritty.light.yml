@@ -86,13 +86,13 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
-    background: '#161819'
-    foreground: '#ebdbb2'
+    background: '#e1d9c2'
+    foreground: '#444444'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '#282828'
-    cursor: '#ebdbb2'
+    text: '#e1d9c2'
+    cursor: '#333333'
 
   # Normal colors
   normal:
