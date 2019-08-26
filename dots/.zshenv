@@ -2,7 +2,7 @@ export TERMINAL=$HOME/bin/alacritty
 export PATH=$PATH:/usr/local/bin
 
 ## ZSH Config
-export ZDOTDIR=$HOME
+export ZDOTDIR=$HOME/.config/zsh
 export ZSHDDIR=$HOME/.config/zsh
 export ZSH=$HOME/.config/oh-my-zsh
 export SHELL_SESSION_HISTORY=0
@@ -10,6 +10,7 @@ export SHELL_SESSION_HISTORY=0
 export HISTSIZE=1000
 export SAVEHIST=1000
 export HISTFILE=~/.history
+export LESSHST=~/.cache/lesshst
 
 export ZSH_THEME="mark"
 export DISABLE_LS_COLORS="false"
@@ -27,11 +28,9 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$HOME/Library/Haskell/bin
 
 ## Go
-export GOROOT=/usr/local/go
+#export GOROOT=/usr/local/go
 export GOPATH=$HOME/prog/go
 export PATH=$PATH:$GOPATH/bin
-export CORE=$GOPATH/src/gitlab.com/redeam/core
-export OPS=$GOPATH/src/gitlab.com/redeam/corestar
 
 ## Docker
 export DOCKER_HIDE_LEGACY_COMMANDS=1
@@ -48,5 +47,4 @@ export FZF_CTRL_R_OPTS='--sort --exact'
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 
-## Misc
-export PATH="$HOME/.scripts:$PATH"
+export LC_COLLATE="C"

@@ -1,0 +1,47 @@
+sw_volume: 100
+audio_device_state:1:mpd pulse audio
+state: pause
+current: 23
+time: 2282.121000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Aurora/songs/All Is Soft Inside.flac
+1:Aurora/songs/All My Demons Greeting Me As A Friend.flac
+2:Aurora/songs/Churchyard.flac
+3:Aurora/songs/Conqueror.flac
+4:Aurora/songs/Forgotten Love (Claptone Remix).flac
+5:Aurora/songs/Forgotten Love.flac
+6:Aurora/songs/Gentle Earthquakes.flac
+7:Aurora/songs/Half The World Away.flac
+8:Aurora/songs/I Went Too Far.flac
+9:Aurora/songs/Infections Of A Different Kind.flac
+10:Aurora/songs/It Happened Quiet.flac
+11:Aurora/songs/Life On Mars.flac
+12:Aurora/songs/Live at Rough Trade East!.flac
+13:Aurora/songs/Lucky.flac
+14:Aurora/songs/Murder Song (5,4,3,2,1).flac
+15:Aurora/songs/Queendom.flac
+16:Aurora/songs/Running With The Wolves.flac
+17:Aurora/songs/Soft Universe.flac
+18:Aurora/songs/The Seed.flac
+19:Aurora/songs/Under Stars.flac
+20:Aurora/songs/Warrior.flac
+21:Aurora/songs/Winter Bird.flac
+22:Ultra Deep Bass Test !!-4vUtXdXmnRE.opus
+song_begin: http://ice2.somafm.com/groovesalad-256-mp3
+Title: Zigo - Voodoo
+Name: Groove Salad: a nicely chilled plate of ambient beats and grooves. [SomaFM]
+song_end
+song_begin: http://ice4.somafm.com/groovesalad-256-mp3
+Title: SomaFM: Groove Salad (#2): A nicely chilled plate of ambient/downtempo beats and grooves.
+song_end
+song_begin: http://ice1.somafm.com/groovesalad-256-mp3
+Title: SomaFM: Groove Salad (#3): A nicely chilled plate of ambient/downtempo beats and grooves.
+song_end
+playlist_end

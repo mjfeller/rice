@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Date
+Exec=/home/mjf/.local/bin/rdate
+Type=Application
