@@ -1,6 +1,11 @@
 export TERMINAL=$HOME/bin/alacritty
 export PATH=$PATH:/usr/local/bin
 
+export VISUAL=vim
+export EDITOR=vim
+export PAGER=less
+export SHELL=zsh
+
 ## ZSH Config
 export ZDOTDIR=$HOME/.config/zsh
 export ZSHDDIR=$HOME/.config/zsh

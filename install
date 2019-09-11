@@ -1,2 +1,2 @@
 #!/bin/sh
-stow --ignore='.conkyrc|.tmux.conf' --target=$HOME dots
+stow --target=$HOME dots

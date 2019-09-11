@@ -63,3 +63,20 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         source '/Users/markfeller/Downloads/google-cloud-sdk/completion.zsh.inc';
     fi
 fi
+
+
+# ANSI 8-bit Format Example:
+#   di=01;38;5;12
+# Explanation: 
+#   01      bold
+#   38;5    use 8-bit code 
+#   12      8-bit code
+# 
+# Colour map: 
+# human    3-bit   8-bit 
+# blue      34      12 
+# cyan      36      14 
+# green     32      10 
+
+LS_COLORS='rs=0:di=01;38;5;12:ln=01;38;5;14:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=38;5;12;42:st=37;44:ex=01;38;5;10:'
+export LS_COLORS
