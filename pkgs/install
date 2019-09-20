@@ -1,5 +1,6 @@
 #!/bin/sh
 
+user=mjf
 logfile=log
 progsfile=packages.csv
 
@@ -8,7 +9,8 @@ log()   { printf "$1\\n" | tee -a $logfile; }
 
 install() { 
 	log "Insatlling '$1' ($n of $total). $1 $2"
-	dnf install -y $1 >> $logfile; }
+	dnf install -y $1 >> $logfile
+}
 
 installation_loop() {
 	log "Beginning package installation installation"
@@ -18,11 +20,13 @@ installation_loop() {
 		n=$((n+1))
 		echo "$comment" | grep "^\".*\"$" >/dev/null 2>&1 && comment="$(echo "$comment" | sed "s/\(^\"\|\"$\)//g")"
 		install "$program" "$comment"
-	done < /tmp/progs.csv; }
+	done < /tmp/progs.csv
+}
 
 install_dots() {
 	log "Stowing dot files"
-	(cd .. && su -c ./install mjf); }
+	(cd .. && su -c ./install $user)
+}
 
 # create or truncate logfile
 > $logfile
