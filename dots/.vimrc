@@ -14,12 +14,6 @@ let mapleader =" "
 	set splitbelow
 	set splitright
 
-" Compile document
-	map <leader>c :!compiler <c-r>%<CR>
-
-" Open corresponding .pdf
-	map <leader>p :!open <c-r>%<CR><CR>
-
 " enable man pages in vim
 	runtime ftplugin/man.vim
 
