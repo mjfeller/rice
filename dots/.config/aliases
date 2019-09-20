@@ -1,0 +1,28 @@
+alias ls="ls -F"
+alias ll="ls -lh"
+alias l="ls -lah --group-directories-first"
+alias emacs="TERM=xterm-256color emacs"
+alias q="exit"
+alias neo="clear && neofetch"
+alias notify='terminal-notifier -title "Terminal" -message "Done with taks"'
+alias weather="curl wttr.in/\~Boulder+Colorado"
+alias f="fzf --preview=\"head -$LINES {}\""
+alias fz="vim \$(f)"
+alias vi=vim
+alias r="ranger"
+
+# Kubernetes
+alias kc="kubectl"
+alias kt="ktail --kubeconfig=$HOME/cluster.config -t '
+$BOLD$LIGHT_CYAN{{ .Container.Name }}$NONE $DIM{{ .Pod.Name }}$NONE $YELLOW{{ if .Timestamp }}{{ .Timestamp.Format \"2006-01-02T15:04:05.999999999Z07:00\" }}{{ end }}$NONE
+{{ .Message }} '"
+
+# Youtube
+alias yt="youtube-dl"
+alias yta="youtube-dl --extract-audio --audio-quality 0 --audio-format flac"
+
+# Dots
+alias dots="cd $HOME/.config/rice/dots"
+
+# Go
+alias g="cd $GOPATH/src/gitlab.com/mark.feller"
