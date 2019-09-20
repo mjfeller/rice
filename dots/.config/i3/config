@@ -144,7 +144,7 @@ client.focused_inactive  $darkgray  $aqua      $fg        $darkgray  $darkgray
 client.unfocused         $darkgray  $darkgray  $fg        $darkgray  $darkgray
 client.urgent            $red       $red       $fg        $red       $red
 
-new_window pixel 5
+default_border pixel 5
 
 title_align center
 
@@ -225,7 +225,11 @@ mode "$mode_gaps_inner" {
 #  Init
 # ----------------------------------------------------------------------
 
-exec xsetroot -solid "#161819"
+# use compton with blur and use hsetroot for background
+exec compton --config .config/compton/compton.conf -b
+exec hsetroot -solid '#363F3E'
+
+#exec xsetroot -solid "#161819"
 exec xinput set-prop 12 288 1  # Tap to Click
 exec xinput set-prop 12 290 1  # Natural Scrolling
-exec_always --no-startup-id notify-send 'Welcome to LARBS:' 'Press Super+F1 for the manual.' -t 10000
+exec_always --no-startup-id notify-send 'Welcome' 'Press Super+F1 for the manual.' -t 10000
