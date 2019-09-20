@@ -227,7 +227,8 @@ mode "$mode_gaps_inner" {
 
 # use compton with blur and use hsetroot for background
 exec compton --config .config/compton/compton.conf -b
-exec hsetroot -solid '#363F3E'
+#exec hsetroot -solid '#363F3E'
+exec --no-status-id hsetroot -solid '#212f2b'
 
 #exec xsetroot -solid "#161819"
 exec xinput set-prop 12 288 1  # Tap to Click

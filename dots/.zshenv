@@ -1,5 +1,6 @@
 export TERMINAL=$HOME/bin/alacritty
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/.local/bin
 
 export VISUAL=vim
 export EDITOR=vim
