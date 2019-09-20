@@ -1,3 +1,7 @@
-Install
+Install Fedora packages
+
+$ cd pkgs && ./install
+
+Install dot files into $HOME using GNU Stow.
 
 $ ./install
