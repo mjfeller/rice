@@ -1,0 +1,5 @@
+#!/bin/sh
+# Display the date using notify-send
+# A nice alternative to displaying the time on a bar.
+
+notify-send -t 5000 "$(date +"%A, %-d %b %-I:%M")"

@@ -1,5 +1,0 @@
-#!/bin/sh
-# Display the date using rofi. 
-# A nice alternative to displaying the time on a bar.
-
-rofi -e "$(date +"%A, %-d %b %-I:%M")"
