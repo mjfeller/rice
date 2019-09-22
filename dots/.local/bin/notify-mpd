@@ -1,4 +1,5 @@
 #!/bin/sh
+# Send notifications when mpd song changes
 
 tmp="/tmp/cover.jpg"
 form="Artist: %artist%\nAlbum: %album%\nTitle:%title%"
@@ -14,7 +15,7 @@ while true; do
 
 	# generate the cover icon if we find one
 	if [ -f "$artpath" ]; then
-		convert -resize 128x128 "$artpath" $tmp
+		convert -resize 84x84 "$artpath" $tmp
 	fi
 	
 	# send out the notication with the cover icon and song information
