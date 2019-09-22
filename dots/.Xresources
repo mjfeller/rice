@@ -1,0 +1,39 @@
+#include "/home/mjf/.config/colors/gruvbox"
+
+! General Color Scheme
+*background: BACKGROUND
+*foreground: FOREGROUND
+*color0:     COLOR0
+*color8:     COLOR8
+*color1:     COLOR1
+*color9:     COLOR9
+*color2:     COLOR2
+*color10:    COLOR10
+*color3:     COLOR3
+*color11:    COLOR11
+*color4:     COLOR4
+*color12:    COLOR12
+*color5:     COLOR5
+*color13:    COLOR13
+*color6:     COLOR6
+*color14:    COLOR14
+*color7:     COLOR7
+*color15:    COLOR15
+
+! Names Colors
+accent: COLOR6
+*wallpaper: #44544e
+
+! Fonts
+Xft.dpi: 96
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! rofi
+rofi.font: scientifica Regular 8
+rofi.terminal: urxvtc
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e {ssh-client} {host}
