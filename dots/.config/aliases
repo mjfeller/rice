@@ -1,5 +1,4 @@
 alias ls="ls -F"
-alias ll="ls -lh"
 alias l="ls -lah --group-directories-first"
 alias emacs="TERM=xterm-256color emacs"
 alias q="exit"
