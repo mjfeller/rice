@@ -57,3 +57,5 @@ visualizer_sync_interval = "30"
 # visualizer_type          = "spectrum"
 visualizer_look          = "∙▋"
 visualizer_in_stereo     = "yes"
+
+execute_on_song_change = "$HOME/.local/bin/notify-mpd"
