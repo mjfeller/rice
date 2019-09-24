@@ -1,4 +1,4 @@
-export PATH=$PATH:/usr/local/bin:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 
 # User configuration
 export TERMINAL=/usr/bin/alacritty
