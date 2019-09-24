@@ -1,13 +1,10 @@
 #!/bin/sh
+# Lock i3 using a blurred image of the desktop
 
 PICTURE=/tmp/i3lock.png
 SCREENSHOT="scrot $PICTURE"
 
-BLUR="0x8"
-
 $SCREENSHOT
-convert $PICTURE -blur $BLUR $PICTURE
+convert $PICTURE -blur 0x8 $PICTURE
 i3lock -i $PICTURE
 rm $PICTURE
-
-#i3lock -c 282828
