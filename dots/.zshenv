@@ -28,6 +28,3 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS='--sort --exact'
 
 export LC_COLLATE="C"
-
-# Tell nvidia to put their drivers somewhere else
-__GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv
