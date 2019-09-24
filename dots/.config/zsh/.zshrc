@@ -13,7 +13,7 @@ plugins=(
 git_prompt() {
     ref=$(git_current_branch)
     if [ ! -z "$ref" ]; then
-       echo "%F{green}$ref%f "
+       echo "%F{cyan}$ref%f "
     fi
 }
 PROMPT='%F{241}λ %2~%f $(git_prompt)%B%F{241}»%b%f '
