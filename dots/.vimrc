@@ -3,12 +3,12 @@
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
-
-let mapleader =" "
+"
 
 " Some basics:
 	set nocompatible
 	set encoding=utf-8
+	let mapleader =" "
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow
