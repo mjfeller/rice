@@ -1,0 +1,36 @@
+# Editor
+emacs,"is the best editor."
+vim,"is another editor."
+
+# Desktop Environment and System Utilities
+xorg-minimal,"is a grapgical server."
+xorg-fonts,"is a font package."
+compton,"is an xorg composition manager"
+i3-gaps,"is the i3 tilling window manager but with gaps."
+xclip,"allows for copying and pasting from the command line."
+xsetroot,"sets status bar and other x properties"
+htop,"provides system usage information and displays processes"
+dbus,"facilities inter-process communication"
+zsh,"is a shell that is compatible with bash."
+rust,""
+go,""
+
+# File Management
+w3m,"is a terminal browser which can also view images"
+lf,"is an extensive terminal file manager"
+fzf,"is a fuzzy finder tool"
+unrar,"extracts rars"
+unzip,"unzips zips"
+
+# Audio and Video
+pulseaudio,"is an audio router"
+ffmpeg,"can record and splice video and audio on the command line"
+mpd,"is a lightweight music daemon"
+mpc,"is a terminal interface for mpd"
+ncmpcpp,"is an ncurses interface for music with multiple formats and a powerful tag editor"
+mpv,"is a video player"
+youtube-dl,"can download any YouTube video when given the link"
+
+# Notications
+libnotify,"allows desktop notificatio"
+dunst,"is a suckless notification system"

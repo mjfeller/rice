@@ -5,7 +5,7 @@
 # For more information about notmuch, see https://notmuchmail.org
 
 [database]
-path=/Users/mark/mail
+path=/Users/mjf/mail
 
 [user]
 name=Mark Feller

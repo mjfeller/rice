@@ -1,32 +1,7 @@
-Install
+Install Fedora packages
 
-$ stow dots
+$ cd pkgs && ./install
 
-Manual install
-- fd
-- alacritty
+Install dot files into $HOME using GNU Stow.
 
-Useful Programs
-- bat
-- emacs
-- fd
-- ffmpeg
-- fontconfig
-- freetype
-- fzf
-- gpg-agent
-- graphviz
-- htop
-- mpc
-- mpd
-- ncmpcpp
-- ncurses
-- neofetch
-- openssl
-- ranger
-- readline
-- ripgrep
-- tmux
-- vim
-- wget
-- youtube-dl
+$ ./install

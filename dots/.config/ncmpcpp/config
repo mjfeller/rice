@@ -47,6 +47,9 @@ volume_color                   = "default"
 header_window_color            = "default"
 empty_tag_color                = "default"
 
+current_item_prefix = "$(white)$r"
+current_item_suffix = "$/r$(end)"
+
 # visualizer
 visualizer_fifo_path     = "/tmp/mpd.fifo"
 visualizer_output_name   = "my_fifo"
@@ -54,3 +57,5 @@ visualizer_sync_interval = "30"
 # visualizer_type          = "spectrum"
 visualizer_look          = "∙▋"
 visualizer_in_stereo     = "yes"
+
+execute_on_song_change = "$HOME/.local/bin/notify-mpd"
