@@ -22,7 +22,6 @@
 
 ! Names Colors
 accent: COLOR6
-*wallpaper: #44544e
 
 ! Fonts
 Xft.dpi: 96
@@ -31,9 +30,3 @@ Xft.rgba: rgb
 Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
-
-! rofi
-rofi.font: scientifica Regular 8
-rofi.terminal: urxvtc
-rofi.ssh-client: ssh
-rofi.ssh-command: {terminal} -e {ssh-client} {host}
