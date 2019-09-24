@@ -7,7 +7,7 @@ alias notify='terminal-notifier -title "Terminal" -message "Done with taks"'
 alias weather="curl wttr.in/\~Boulder+Colorado"
 alias f="fzf --preview=\"head -$LINES {}\""
 alias fz="vim \$(f)"
-alias vi=vim
+alias vi="vim -i  ~/.cache/vim/info"
 alias r="ranger"
 
 # Kubernetes
