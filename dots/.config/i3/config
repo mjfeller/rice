@@ -96,21 +96,21 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 default_border pixel 3
 
-# color scheme from Xresouces
-set_from_resource $bg     background
-set_from_resource $fg     foreground
-set_from_resource $red    color1
-set_from_resource $green  color2
-set_from_resource $yellow color3
-set_from_resource $blue   color4
-set_from_resource $purple color5
-set_from_resource $cyan   color6
-set_from_resource $gray   color7
-set_from_resource $accent accent
+# gruvbox colorscheme
+set $bg        #161819
+set $fg        #ebdbb2
+set $red       #cc241d
+set $green     #98971a
+set $yellow    #d79921
+set $blue      #458588
+set $purple    #b16286
+set $cyan      #689d6a
+set $gray      #a89984
 set $darkgray  #1d2021
+set $accent    #1d2021
 
 # class                  border     backgr.    text       indicator  child_border
-client.focused           $darkgray  $darkgray  $darkgray  $darkgray  $darkgray
+client.focused           $accent    $darkgray  $accent    $accent    $accent
 client.focused_inactive  $bg        $darkgray  $bg        $bg        $bg
 client.unfocused         $bg        $darkgray  $bg        $bg        $bg
 client.urgent            $red       $red       $fg        $red       $red
