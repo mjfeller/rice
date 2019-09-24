@@ -187,7 +187,7 @@ background = "#161819"
 timeout = 4
 
 [urgency_normal]
-frame_color = "#689d6a"
+frame_color = "#1d2021"
 foreground = "#ebdbb2"
 background = "#161819"
 timeout = 6
