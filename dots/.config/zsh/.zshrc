@@ -22,3 +22,4 @@ PROMPT='%F{241}λ %2~%f $(git_prompt)%B%F{241}»%b%f '
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+SHELL_SESSION_HISTORY=0

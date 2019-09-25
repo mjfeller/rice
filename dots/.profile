@@ -1,19 +1,24 @@
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+
 export PATH=$PATH:$HOME/.local/bin
 
 # User configuration
-export TERMINAL=/usr/bin/alacritty
-export VISUAL=/usr/bin/vim
-export EDITOR=/usr/bin/vim
-export PAGER=/usr/bin/less
-export SHELL=/usr/bin/zsh
-export MANPATH=/usr/local/share/man:$MANPATH
-export LESSHST=~/.cache/lesshst
+export TERMINAL=alacritty
+export VISUAL=vim
+export EDITOR=vim
+export PAGER=less
+export SHELL=zsh
+export MANPATH=$MANPATH:/usr/local/share/
+
+export LESSHST=$XDG_CACHE_HOME/lesshst
+export HISTFILE=$XDG_CACHE_HOME/bash_history
 
 # ZSH Config
-export ZDOTDIR=$HOME/.config/zsh
-export ZSHDDIR=$HOME/.config/zsh
-export ZSH=$HOME/.config/oh-my-zsh
-export SHELL_SESSION_HISTORY=0
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZSHDDIR=$XDG_CONFIG_HOME/zsh
+export ZSH=$XDG_CONFIG_HOME/oh-my-zsh
 
 # Go
 export GOPATH=$HOME/prog/go
