@@ -1,2 +1,3 @@
 #!/bin/sh
-stow --target=$HOME dots
+
+stow --target=$HOME --ignore='gitignore' dots
