@@ -22,9 +22,4 @@ export PATH=$PATH:$GOPATH/bin
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
 
-# fzf
-export FZF_DEFAULT_OPTS='--height 40% --exact'
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export FZF_CTRL_R_OPTS='--sort --exact'
-
 export LC_COLLATE="C"

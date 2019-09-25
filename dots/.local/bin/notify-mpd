@@ -2,7 +2,7 @@
 # Send notifications when mpd song changes
 
 tmp="/tmp/cover.jpg"
-form="Artist: %artist%\nAlbum: %album%\nTitle:%title%"
+form="Artist: %artist%\nAlbum: %album%\nTitle: %title%"
 
 rm -f $tmp
 
@@ -12,7 +12,7 @@ artpath="/home/mjf/Music/$(dirname "$(mpc status -f '%file%' | head -n1)")/cover
 
 # generate the cover icon if we find one
 if [ -f "$artpath" ]; then
-	convert -resize 84x84 "$artpath" $tmp
+    convert -resize 84x84 "$artpath" $tmp
 fi
 
 # send out the notication with the cover icon and song information

@@ -1,14 +1,15 @@
 alias ls="ls -F"
 alias l="ls -lah --group-directories-first"
-alias emacs="TERM=xterm-256color emacs"
 alias q="exit"
+alias vi=vim
+
 alias neo="clear && neofetch"
-alias notify='terminal-notifier -title "Terminal" -message "Done with taks"'
-alias weather="curl wttr.in/\~Boulder+Colorado"
 alias f="fzf --preview=\"head -$LINES {}\""
 alias fz="vim \$(f)"
-alias vi="vim -i  ~/.cache/vim/info"
-alias r="ranger"
+alias weather="curl wttr.in/\~Boulder+Colorado"
+
+alias dots="cd $HOME/.config/rice/dots"
+alias g="cd $GOPATH/src/gitlab.com/mark.feller"
 
 # Kubernetes
 alias kc="kubectl"
@@ -19,9 +20,3 @@ $BOLD$LIGHT_CYAN{{ .Container.Name }}$NONE $DIM{{ .Pod.Name }}$NONE $YELLOW{{ if
 # Youtube
 alias yt="youtube-dl"
 alias yta="youtube-dl --extract-audio --audio-quality 0 --audio-format flac"
-
-# Dots
-alias dots="cd $HOME/.config/rice/dots"
-
-# Go
-alias g="cd $GOPATH/src/gitlab.com/mark.feller"
