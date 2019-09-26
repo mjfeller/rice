@@ -148,8 +148,13 @@ bindsym $mod+r mode "resize"
 #  Gaps Mode
 # ----------------------------------------------------------------------
 
-gaps outer 110
-gaps inner 50
+# Desktop
+#gaps outer 110
+#gaps inner 50
+
+# Laptop
+gaps outer 0
+gaps inner 10
 
 set $mode_gaps Gaps: (o)uter, (i)nner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -218,4 +223,5 @@ exec xsetroot -solid "#161819"
 
 exec xinput set-prop 12 288 1  # Tap to Click
 exec xinput set-prop 12 290 1  # Natural Scrolling
+exec setxkbmap -option caps:ctrl_modifier
 exec_always --no-startup-id notify-send 'Welcome' 'Press Super+F1 for the manual.' -t 10000
