@@ -1,0 +1,5 @@
+#!/bin/sh
+
+status=`upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"  | sed "s/: */: /" | sed "s/^ *//"`
+
+notify-send "Power" "$status"

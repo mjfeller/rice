@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# chose a network
+network=`nmcli -f SSID dev wifi list | tail -n +2 | sort -u | grep -v '\-\-' | sed 's/ *$//' | rofi -dmenu`
+pass=`rofi -password -p 'Password' -dmenu -show window`
+
+# connect to network
+msg=`nmcli device wifi connect $network password $pass 2>&1`
+
+# interpret the results
+case "$msg" in 
+  *failed*)
+    notify-send -u critical "WiFi" "Failed to connect to $network"
+    ;;
+  *No\ network\ with\ SSID*)
+    notify-send -u critical "WiFi" "Could not find network with SSID '$network'"
+    ;;
+  *missing*)
+    notify-send -u critical "WiFi" "Password not provided"
+    ;;
+  *)
+    notify-send "wifi" "Successfully connected to '$network'"
+    ;;
+esac

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+gry="\e[30m"
+red="\e[31m"
+grn="\e[32m"
+ylw="\e[33m"
+blu="\e[34m"
+prp="\e[35m"
+cyn="\e[36m"
+wht="\e[37m"
+rst="\e[0m"
+
+# fetch some general info
+source /etc/os-release
+distro="$NAME $VERSION_ID"
+kernel=`uname -r | sed 's/-.*//'`
+pkgs=`dnf list --installed | wc -l`
+
+echo
+echo -e "    distro  $distro"
+echo -e "    kernel  $kernel"
+echo -e "  packages  $pkgs"
+echo -e "     shell  zsh"
+echo -e "        wm  i3"
+echo
+echo -e "   ${gry}▼ ${red}▲ ${grn}▼ ${ylw}▲ ${cyn}▼ ${blu}▲ ${prp}▼ ${wht}▲"
+echo
