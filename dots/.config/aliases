@@ -19,4 +19,4 @@ $BOLD$LIGHT_CYAN{{ .Container.Name }}$NONE $DIM{{ .Pod.Name }}$NONE $YELLOW{{ if
 
 # Youtube
 alias yt="youtube-dl"
-alias yta="youtube-dl --extract-audio --audio-quality 0 --audio-format flac"
+alias yta='youtube-dl --extract-audio --audio-quality 0 --audio-format flac --output "%(title)s.%(ext)s"'
