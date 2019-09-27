@@ -25,9 +25,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Escape exec "$HOME/.local/bin/lock"
-bindsym $mod+Shift+e exec "$HOME/.local/bin/prompt 'Do you really want to exit i3?' 'i3-msg exit'"
-bindsym $mod+Shift+Escape exec "$HOME/.local/bin/prompt 'Do you really want to shutdown?' 'shutdown -h now'"
+bindsym $mod+Escape exec "lock"
+bindsym $mod+Shift+e exec "prompt 'Do you really want to exit i3?' 'i3-msg exit'"
+bindsym $mod+Shift+Escape exec "prompt 'Do you really want to shutdown?' 'shutdown -h now'"
 
 # change focus
 bindsym $mod+h focus left
@@ -91,14 +91,14 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # pulseaudio volume
-bindsym $mod+u exec "$HOME/.local/bin/volume-change -5%" 
-bindsym $mod+i exec "$HOME/.local/bin/volume-change +5%" 
+bindsym $mod+u exec "volume-change -5%"
+bindsym $mod+i exec "volume-change +5%"
 
 # laptop power status
-bindsym $mod+p exec "$HOME/.local/bin/power-status" 
+bindsym $mod+p exec "power-status"
 
 # date
-bindsym $mod+d exec "$HOME/.local/bin/notify-date"
+bindsym $mod+d exec "notify-date"
 
 # ----------------------------------------------------------------------
 #  Theme
