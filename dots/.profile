@@ -12,7 +12,7 @@ export PAGER=less
 export SHELL=zsh
 export MANPATH=$MANPATH:/usr/local/share/
 
-export LESSHST=$XDG_CACHE_HOME/lesshst
+export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export HISTFILE=$XDG_CACHE_HOME/bash_history
 
 # ZSH Config
@@ -28,3 +28,5 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
 export LC_COLLATE="C"
+
+export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
