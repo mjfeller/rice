@@ -31,6 +31,7 @@
   :config
   (progn (require 'org-indent)
          (require 'org-src)
+         (require 'ob-shell)
 
          (setq org-startup-indented t)
          (setq org-src-tab-acts-natively t)

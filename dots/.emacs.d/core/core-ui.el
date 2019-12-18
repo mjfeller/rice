@@ -56,7 +56,7 @@
 
 (setq-default fill-column 80)
 
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook 'delete-tailing-whitespace)
 
 (setq echo-keystrokes 0.1)
 

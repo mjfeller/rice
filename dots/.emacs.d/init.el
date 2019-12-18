@@ -111,6 +111,7 @@
 (require 'module-bbdb)
 (require 'module-c)
 (require 'module-company)
+(require 'module-docker)
 (require 'module-eldoc)
 (require 'module-emacs-lisp)
 (require 'module-evil)

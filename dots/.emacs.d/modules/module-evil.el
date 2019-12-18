@@ -72,6 +72,7 @@
   :config (evil-snipe-override-mode t))
 
 (use-package evil-org
+  :disabled
   :delight (evil-org-mode)
   :config
   (progn (add-hook 'org-mode-hook 'evil-org-mode)

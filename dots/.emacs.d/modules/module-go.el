@@ -22,8 +22,11 @@
 ;;; Code:
 
 ;; set gopath unless it has already been set
+(defvar go-compile-command "go build -v && go vet && go test -covermode=count -coverprofile=out.cover")
+
 (unless (getenv "GOPATH")
   (setenv "GOPATH" (concat (getenv "HOME") "/prog/go")))
+(setenv "PATH" (concat (getenv "PATH") ":/Users/mfeller/prog/go/bin"))
 
 (use-package go-mode
   :bind (:map go-mode-map
@@ -32,7 +35,7 @@
               ("C-c C-t" . ginkgo-test)
               ("C-c C"   . go-cover))
   :config
-  (progn (setq gofmt-command "gofumports") ; use goimports instead of go-fmt
+  (progn (setq gofmt-command "goimports") ; use goimports instead of go-fmt
          (setq godoc-command "godoc")     ; use godoc instead of go doc
          (setq tab-width 4)
 
@@ -73,9 +76,8 @@
 
          (defun setup-go-mode-compile ()
            "Customize compile command to run go build"
-           (if (not (string-match "go" compile-command))
                (set (make-local-variable 'compile-command)
-                    "go build -v && go vet && go test -covermode=count -coverprofile=out.cover")))
+                    go-compile-command))
 
          (add-hook 'go-mode-hook 'setup-go-mode-compile)
          (add-hook 'go-mode-hook 'subword-mode)

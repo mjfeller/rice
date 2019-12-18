@@ -1,7 +1,11 @@
-(setenv "CORE" (substitute-in-file-name "$GOPATH/src/gitlab.com/redeam/core"))
-(setenv "OPS" (substitute-in-file-name "$GOPATH/src/gitlab.com/redeam/ops"))
+(setenv "RECURLY" (substitute-in-file-name "$GOPATH/src/githum.com/recurly"))
 
 (defvar redeam/backplane "https://backplane.develop.redeam.io/v1")
+
+(defun recurly ()
+  "open recurly go code direcrtory"
+  (interactive)
+  (counsel-find-file (getenv "RECURLY")))
 
 (defun core ()
   "open file in core"

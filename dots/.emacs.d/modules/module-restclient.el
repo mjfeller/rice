@@ -24,6 +24,7 @@
 (use-package restclient)
 
 (use-package company-restclient
+  :disabled
   :after (restclient company))
 
 (provide 'module-restclient)
