@@ -14,7 +14,3 @@ alias g="cd $GOPATH/src/gitlab.com/mark.feller"
 # Youtube
 alias yt="youtube-dl"
 alias yta='youtube-dl --extract-audio --audio-quality 0 --audio-format flac --output "%(title)s.%(ext)s"'
-
-# Recurly
-alias rl="cd $GOPATH/src/github.com/recurly"
-alias grcmd="$GOPATH/bin/rcmd"
