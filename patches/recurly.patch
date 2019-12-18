@@ -1,0 +1,14 @@
+diff --git a/dots/.config/git/config b/dots/.config/git/config
+index 2ab6a88..4834b6d 100644
+--- a/dots/.config/git/config
++++ b/dots/.config/git/config
+@@ -1,6 +1,8 @@
+ [user]
+     name = Mark Feller
+-    email = mark.feller@member.fsf.org
++    email = mfeller@recurly.com
++    signingkey = BF5DA997A2A9913EB2B453C56A84C7868F1E023F
++
+ [core]
+   hooksPath = ~/.config/git/hooks
+ 
