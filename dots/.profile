@@ -3,6 +3,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
 export PATH=$PATH:$HOME/.local/bin
+export PATH=/usr/local/bin:$PATH
 
 # User configuration
 export TERMINAL=alacritty
@@ -28,5 +29,3 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
 export LC_COLLATE="C"
-
-export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
