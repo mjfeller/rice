@@ -1,0 +1,51 @@
+diff --git a/dots/.config/alacritty/alacritty.yml b/dots/.config/alacritty/alacritty.yml
+index 82fd8a7..b55f91e 100644
+--- a/dots/.config/alacritty/alacritty.yml
++++ b/dots/.config/alacritty/alacritty.yml
+@@ -24,12 +24,13 @@ window:
+   # Units are physical pixels; this is not DPI aware.
+   # (change requires restart)
+   padding:
+-    x: 20
+-    y: 20
++    x: 30
++    y: 30
+ 
+   # Window decorations
+   # Setting this to false will result in window without borders and title bar.
+   #decorations: transparent
++  decorations: none
+ 
+ # Display tabs using this many cells (changes require restart)
+ tabspaces: 8
+@@ -58,7 +59,7 @@ font:
+     # style: Italic
+ 
+   # Point size of the font
+-  size: 10.0
++  size: 13.0
+ 
+   # Offset is the extra space around each character. offset.y can be thought of
+   # as modifying the linespacing, and offset.x as modifying the letter spacing.
+@@ -219,7 +220,7 @@ live_config_reload: true
+ # Entries in shell.args are passed unmodified as arguments to the shell.
+ #
+ shell:
+-  program: /bin/zsh
++  program: /usr/local/bin/zsh
+ #   args:
+ #     - --login
+ 
+diff --git a/dots/.config/mpd/mpd.conf b/dots/.config/mpd/mpd.conf
+index e4eb7c1..d84452f 100644
+--- a/dots/.config/mpd/mpd.conf
++++ b/dots/.config/mpd/mpd.conf
+@@ -11,6 +11,6 @@ state_file          "~/.config/mpd/state"
+ sticker_file        "~/.config/mpd/sticker.sql"
+ 
+ audio_output {
+-    type "pulse"
+-    name "mpd pulse audio"
++    type "osx"
++    name "default audio"
+ }
