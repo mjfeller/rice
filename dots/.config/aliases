@@ -1,5 +1,5 @@
 alias ls="ls -F"
-alias l="ls -lah --group-directories-first"
+alias l="ls -lah"
 alias q="exit"
 alias vi=vim
 
@@ -11,12 +11,10 @@ alias weather="curl wttr.in/\~Boulder+Colorado"
 alias dots="cd $HOME/.config/rice/dots"
 alias g="cd $GOPATH/src/gitlab.com/mark.feller"
 
-# Kubernetes
-alias kc="kubectl"
-alias kt="ktail --kubeconfig=$HOME/cluster.config -t '
-$BOLD$LIGHT_CYAN{{ .Container.Name }}$NONE $DIM{{ .Pod.Name }}$NONE $YELLOW{{ if .Timestamp }}{{ .Timestamp.Format \"2006-01-02T15:04:05.999999999Z07:00\" }}{{ end }}$NONE
-{{ .Message }} '"
-
 # Youtube
 alias yt="youtube-dl"
 alias yta='youtube-dl --extract-audio --audio-quality 0 --audio-format flac --output "%(title)s.%(ext)s"'
+
+# Recurly
+alias rl="cd $GOPATH/src/github.com/recurly"
+alias grcmd="$GOPATH/bin/rcmd"

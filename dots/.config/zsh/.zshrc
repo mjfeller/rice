@@ -1,5 +1,7 @@
 source $HOME/.config/oh-my-zsh/oh-my-zsh.sh
 source $HOME/.config/zsh/fzf.zsh
+source $HOME/.config/zsh/kubernetes.zsh
+source $HOME/.config/zsh/recurly.zsh
 source $HOME/.config/aliases
 
 # oh my zsh plugins
