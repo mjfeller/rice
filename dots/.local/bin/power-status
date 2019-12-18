@@ -1,5 +1,8 @@
 #!/bin/sh
 
-status=`upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"  | sed "s/: */: /" | sed "s/^ *//"`
+# Arbitrary but unique message id
+msgId="661051"
 
-notify-send "Power" "$status"
+status=$(upower -i "$(upower -e | grep BAT)" | grep --color=never -E "state|to\ full|to\ empty|percentage"  | sed "s/: */: /" | sed "s/^ *//")
+
+dunstify -r $msgId "Power" "$status"

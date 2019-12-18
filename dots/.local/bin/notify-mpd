@@ -1,13 +1,16 @@
 #!/bin/sh
 # Send notifications when mpd song changes
 
+# Arbitrary but unique message id
+msgId="661050"
+
 tmp="/tmp/cover.jpg"
 form="Artist: %artist%\nAlbum: %album%\nTitle: %title%"
 
 rm -f $tmp
 
 # create the notification text
-toprint="`mpc status -f \"$form\" | head -n3 | sed \"s:&:&amp;:g\"`"
+toprint="$(mpc status -f "$form" | head -n3 | sed \"s:&:&amp;:g\")"
 artpath="/home/mjf/Music/$(dirname "$(mpc status -f '%file%' | head -n1)")/cover.jpg"
 
 # generate the cover icon if we find one
@@ -16,4 +19,4 @@ if [ -f "$artpath" ]; then
 fi
 
 # send out the notication with the cover icon and song information
-notify-send -i "$tmp" "$toprint"
+dunstify -r $msgId -i "$tmp" "$toprint"
