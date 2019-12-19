@@ -108,7 +108,7 @@
 
 (message "Loading modules...")
 
-(require 'module-bbdb)
+;; (require 'module-bbdb)
 (require 'module-c)
 (require 'module-company)
 (require 'module-docker)

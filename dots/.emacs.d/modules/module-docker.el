@@ -21,7 +21,8 @@
 
 ;;; Code:
 
-(use-package docker)
+(use-package docker
+  :disabled)
 
 (use-package dockerfile-mode)
 
