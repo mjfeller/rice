@@ -10,7 +10,7 @@ log() {
 }
 
 install_packages() {
-    # Copy a real file to our temp progsfile or attempt to curl the progsfile
+    # Copy a real file to our temp pkgfile or attempt to curl the pkgfile
     ([ -f "$pkgfile" ] && cp "$pkgfile" /tmp/pkgs) || curl -Ls "$pkgfile" > /tmp/pkgs
 
     packages=$(sed '/^$/d' /tmp/pkgs | sed '/^#/d')
@@ -22,7 +22,7 @@ EOF
 }
 
 install_dots() {
-    git clone "$dotsrepo" ~/.config/rice
+    git clone "$dotsrepo" ~/.config/rice || log "Dots have already been clone"
     (cd ~/.config/rice && ./install)
 }
 
