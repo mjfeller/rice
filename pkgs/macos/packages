@@ -17,6 +17,7 @@
  	gnupg            	is the latest gnupg
 C	alacritty        	is a fast terminal
 C	font-fira-mono     	is a nice looking font
+ 	shellcheck      	is a super handy shell static analysis tool
 
 # Audio and Video
  	ffmpeg           	can record and splice video and audio on the command line
