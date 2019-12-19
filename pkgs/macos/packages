@@ -1,25 +1,27 @@
 # Tooling
-git               is a version control system
-stow              is a tool for managing symlinks for dot files
-emacs             is the best editor
-lf                is an extensive terminal file manager
-fd                is a nicer find tool
-fzf               is a fuzzy finder tool
-ripgrep           is a nicer grep tool
-htop              provides system usage information and displays processes
-bash              is the updated bash shell
-bash-completion   is completions for bash
-zsh               is a shell that is compatible with bash.
-go                is the go toolchain
-jq                is a tool for working is json
-aspell            is a spell checker
-ispell            is a another spell checker
-gnupg             is the latest gnupg
+ 	git              	is a version control system
+ 	stow             	is a tool for managing symlinks for dot files
+ 	emacs            	is the best editor
+ 	lf               	is an extensive terminal file manager
+ 	fd               	is a nicer find tool
+ 	fzf              	is a fuzzy finder tool
+ 	ripgrep          	is a nicer grep tool
+ 	htop             	provides system usage information and displays processes
+ 	bash             	is the updated bash shell
+ 	bash-completion  	is completions for bash
+ 	zsh              	is a shell that is compatible with bash.
+ 	go               	is the go toolchain
+ 	jq               	is a tool for working is json
+ 	aspell           	is a spell checker
+ 	ispell           	is a another spell checker
+ 	gnupg            	is the latest gnupg
+C	alacritty        	is a fast terminal
+C	font-fira-mono     	is a nice looking font
 
 # Audio and Video
-ffmpeg            can record and splice video and audio on the command line
-flac              is for working with flac audio files
-mpd               is a lightweight music daemon
-mpc               is a terminal interface for mpd
-ncmpcpp           is an ncurses interface for music with multiple formats and a powerful tag editor
-youtube-dl        can download any YouTube video when given the link
+ 	ffmpeg           	can record and splice video and audio on the command line
+ 	flac             	is for working with flac audio files
+ 	mpd              	is a lightweight music daemon
+ 	mpc              	is a terminal interface for mpd
+ 	ncmpcpp          	is an ncurses interface for music with multiple formats and a powerful tag editor
+ 	youtube-dl       	can download any YouTube video when given the link
