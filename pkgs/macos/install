@@ -26,5 +26,9 @@ install_dots() {
     (cd ~/.config/rice && ./install)
 }
 
+post_install() {
+    (cd ~/.config/rice && patch)
+}
+
 install_packages
 install_dots
