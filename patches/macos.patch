@@ -1,3 +1,14 @@
+From 5c53c7bde26294d2cf5a22237004b01e2221abfa Mon Sep 17 00:00:00 2001
+From: Mark Feller <mfeller@recurly.com>
+Date: Thu, 19 Dec 2019 15:44:54 -0700
+Subject: [PATCH] macos patch
+
+Signed-off-by: Mark Feller <mfeller@recurly.com>
+---
+ dots/.config/alacritty/alacritty.yml | 9 +++++----
+ dots/.config/mpd/mpd.conf            | 4 ++--
+ 2 files changed, 7 insertions(+), 6 deletions(-)
+
 diff --git a/dots/.config/alacritty/alacritty.yml b/dots/.config/alacritty/alacritty.yml
 index 82fd8a7..b55f91e 100644
 --- a/dots/.config/alacritty/alacritty.yml
@@ -49,3 +60,6 @@ index e4eb7c1..d84452f 100644
 +    type "osx"
 +    name "default audio"
  }
+-- 
+2.21.0 (Apple Git-122.2)
+
