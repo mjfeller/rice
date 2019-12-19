@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+dotsrepo=${dotfilesrepo:-"https://gitlab.com/mark.feller/rice.git"}
 pkgfile=${pkgfile:-"https://gitlab.com/mark.feller/rice/raw/master/pkgs/fedora/packages"}
 
 log() {
@@ -22,7 +23,7 @@ EOF
 }
 
 install_dots() {
-    git clone https://gitlab.com/mark.feller/rice.git ~/.config/rice
+    git clone "$dotsrepo" ~/.config/rice
     (cd ~/.config/rice && ./install)
 }
 
