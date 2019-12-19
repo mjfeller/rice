@@ -1,10 +1,14 @@
+# Tooling
+git				is a version control system
+stow			is a tool for managing symlinks for dot files
+
 # Editor
 emacs          is the best editor
 vim            is another editor
 
 # Desktop Environment and System Utilities
-xorg-minimal   is a grapgical server
-xorg-fonts     is a font package
+#xorg-minimal   is a grapgical server
+#xorg-fonts     is a font package
 compton        is an xorg composition manager
 i3-gaps        is the i3 tilling window manager but with gaps.
 xclip          allows for copying and pasting from the command line.

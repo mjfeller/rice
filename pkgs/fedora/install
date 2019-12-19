@@ -8,13 +8,23 @@ log() {
            "${3:-->}" "${2:+[1;36m}$1${2:+[m}" "$2"
 }
 
-# Copy a real file to our temp progsfile or attempt to curl the progsfile
-([ -f "$pkgfile" ] && cp "$pkgfile" /tmp/pkgs) || curl -Ls "$pkgfile" > /tmp/pkgs
+install_packages() {
+    # Copy a real file to our temp progsfile or attempt to curl the progsfile
+    ([ -f "$pkgfile" ] && cp "$pkgfile" /tmp/pkgs) || curl -Ls "$pkgfile" > /tmp/pkgs
 
-packages=$(sed '/^$/d' /tmp/pkgs | sed '/^#/d')
-while IFS=' ' read -r program comment; do
-    log "Installing $program $comment"
-    dnf install -y $program
-done <<EOF
+    packages=$(sed '/^$/d' /tmp/pkgs | sed '/^#/d')
+    while IFS=' ' read -r program comment; do
+        log "Installing $program $comment"
+        dnf install -y $program
+    done <<EOF
 $packages
 EOF
+}
+
+install_dots() {
+    git clone https://gitlab.com/mark.feller/rice.git ~/.config/rice
+    (cd ~/.config/rice && ./install)
+}
+
+install_pacakges
+install_dots
