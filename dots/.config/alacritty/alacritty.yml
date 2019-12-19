@@ -24,12 +24,13 @@ window:
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 20
-    y: 20
+    x: 30
+    y: 30
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
   #decorations: transparent
+  decorations: none
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -58,7 +59,7 @@ font:
     # style: Italic
 
   # Point size of the font
-  size: 10.0
+  size: 13.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -219,7 +220,7 @@ live_config_reload: true
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
 shell:
-  program: /bin/zsh
+  program: /usr/local/bin/zsh
 #   args:
 #     - --login
 
