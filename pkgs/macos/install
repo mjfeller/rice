@@ -26,9 +26,5 @@ install_dots() {
     (cd ~/.config/rice && ./install)
 }
 
-post_install() {
-    (cd ~/.config/rice && git am -signoff < patches/macos.patch)
-}
-
 install_packages
 install_dots
