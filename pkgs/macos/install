@@ -15,7 +15,7 @@ install_packages() {
 
     packages=$(sed '/^$/d' /tmp/pkgs | sed '/^#/d')
     while IFS=' ' read -r program comment; do
-        brew install --force $program
+        brew install $program || brew upgrade $program
     done <<EOF
 $packages
 EOF
