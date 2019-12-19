@@ -26,5 +26,8 @@ install_dots() {
     (cd ~/.config/rice && ./install)
 }
 
+brew cask install alacritty
+brew cask install font-fira-mono
+
 install_packages
 install_dots
