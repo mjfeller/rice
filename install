@@ -16,7 +16,7 @@ elif [ $(command -v xbps-install) ]; then
     log "Install packages for voidlinux"
     os=void
     installpkg() {
-        xbps-install -y "$1" >/dev/null 2>&1
+        xbps-install -Sy "$1" >/dev/null 2>&1
     }
 elif [ $(command -v brew) ]; then
     log "Installing packages for macOS"
