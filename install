@@ -45,7 +45,7 @@ install_packages() {
     packages=$(sed '/^$/d' /tmp/pkgs | sed '/^#/d')
     while IFS='	' read -r flag program comment; do
         program=$(trim_string "$program")
-        installpkg $progrm $flag
+        installpkg $program $flag
     done <<EOF
 $packages
 EOF
