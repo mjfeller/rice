@@ -57,5 +57,13 @@ install_dots() {
     (cd ~/.config/rice && stow --target=$HOME --ignore='gitignore' dots)
 }
 
+pre_install() {
+    # Enable RPM Fustion free and non-free on Fedora
+    [ $os -eq "fedora" ] && sudo dnf install \
+         https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+         https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+}
+
+pre_install
 install_packages
 install_dots
