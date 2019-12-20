@@ -9,8 +9,14 @@ if [ $(command -v dnf) ]; then
     log "Installing packages for Fedora"
     os=fedora
 	installpkg() {
-        log "Installing $program..."
+        log "Installing $1..."
         dnf install -y "$1"
+    }
+elif [ $(command -v xbps-install) ]; then
+    log "Install packages for voidlinux"
+    os=void
+    installpkg() {
+        xbps-install -y "$1" >/dev/null 2>&1
     }
 elif [ $(command -v brew) ]; then
     log "Installing packages for macOS"
