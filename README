@@ -1,9 +1,6 @@
-Install Fedora packages
+Installation
+============
 
-$ cd pkgs && ./install
+Install packages and dot files::
 
-Install dot files into $HOME using GNU Stow.
-
-$ ./install
-
-$ curl https://gitlab.com/mark.feller/rice/raw/master/pkgs/macos/install | sh
+  $ curl -L mfeller.io/install.sh | sh
