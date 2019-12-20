@@ -9,6 +9,7 @@ if [ $(command -v dnf) ]; then
     log "Installing packages for Fedora"
     os=fedora
 	installpkg() {
+        log "Installing $program..."
         dnf install -y "$1"
     }
 elif [ $(command -v brew) ]; then
