@@ -13,7 +13,7 @@ kcc() {
 }
 
 authn() {
-    istioctl authn -n mjf-istio tls-check $(pod recurly-app-web) | rg "HOST|mjf-istio" --color=never
+    istioctl authn -n qa5 tls-check $(pod recurly-app-web) | rg "HOST|qa5" --color=never
 }
 
 # kt() {

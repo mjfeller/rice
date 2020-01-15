@@ -1,28 +1,29 @@
 # Tooling
     git             is a version control system
     stow            is a tool for managing symlinks for dot files
+    go              is the go toolchain
+    rust            is the rust toolchain
 
 # Editor
     emacs           is the best editor
     vim             is another editor
 
 # Desktop Environment and System Utilities
-    compton         is an xorg composition manager
     i3-gaps         is the i3 tilling window manager but with gaps.
     xclip           allows for copying and pasting from the command line.
-    xsetroot        sets status bar and other x properties
     htop            provides system usage information and displays processes
     dbus            facilities inter-process communication
     zsh             is a shell that is compatible with bash.
-    rust            is the rust toolchain
-    go              is the go toolchain
 
 # File Management
-    w3m             is a terminal browser which can also view images
-    lf              is an extensive terminal file manager
-    fzf             is a fuzzy finder tool
-    unrar           extracts rars
-    unzip           unzips zips
+    w3m                     is a terminal browser which can also view images
+G   github.com/gokcehan/lf  is an extensive terminal file manager
+    fd-find                 is a more friendly find
+    ripgrep                 is a more friendly grep
+    bat                     prints files out nicely
+    fzf                     is a fuzzy finder tool
+    unrar                   extracts rars
+    unzip                   unzips zips
 
 # Audio and Video
     pulseaudio      is an audio router
@@ -36,3 +37,6 @@
 # Notications
     libnotify       allows desktop notificatio
     dunst           is a suckless notification system
+
+# Development tool
+    kubernetes-client  is a the kubernetes command line utility
