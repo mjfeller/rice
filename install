@@ -87,10 +87,8 @@ EOF
 install_dots() {
     # Clone and install dot files
     log "Fetching dot files"
-    su $name
     git clone "$dotrepo" ~/.config/rice > "$debug" || log "Dots have already been cloned"
     (cd ~/.config/rice && stow --target="$HOME" --ignore='gitignore' dots)
-    exit
 }
 
 cleanup() {

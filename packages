@@ -14,6 +14,7 @@
     htop            provides system usage information and displays processes
     dbus            facilities inter-process communication
     zsh             is a shell that is compatible with bash.
+ 	arandr	        is a xorg utility to setup multiple displays
 
 # File Management
     w3m                     is a terminal browser which can also view images
