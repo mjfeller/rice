@@ -49,10 +49,10 @@ pre_install() {
     try dnf install dnf-plugins-core >> "$logfile"
 
     log "Enabled i3-gaps community repo"
-    try dnf copr enable gregw/i3desktop >> "$logfile"
+    try dnf copr enable -y gregw/i3desktop >> "$logfile"
 
     log "Enabled alacritty community repo"
-    try dnf copr enable pschyska/alacritty >> "$logfile"
+    try dnf copr enable -y pschyska/alacritty >> "$logfile"
 }
 
 install_package() {
