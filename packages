@@ -39,4 +39,4 @@ G	github.com/gokcehan/lf	is an extensive terminal file manager
     dunst           is a suckless notification system
 
 # Development tool
-    kubernetes-client  is a the kubernetes command line utility
+ 	kubernetes-client	is a the kubernetes command line utility
