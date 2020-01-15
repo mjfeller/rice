@@ -2,6 +2,7 @@
     git             is a version control system
     stow            is a tool for managing symlinks for dot files
     go              is the go toolchain
+G	github.com/gokcehan/lf	is an extensive terminal file manager
     rust            is the rust toolchain
 
 # Editor
@@ -17,7 +18,6 @@
 
 # File Management
     w3m                     is a terminal browser which can also view images
-G   github.com/gokcehan/lf  is an extensive terminal file manager
     fd-find                 is a more friendly find
     ripgrep                 is a more friendly grep
     bat                     prints files out nicely
