@@ -99,14 +99,13 @@ main() {
     dotrepo=${dotrepo:-"https://gitlab.com/mark.feller/rice.git"}
 
     # Set the package list file that contains all packages to be installed.
-    pkgfile=${pkgfile:-"https://gitlab.com/mark.feller/rice/raw/master/pkgs/fedora/packages"}
+    pkgfile=${pkgfile:-"https://gitlab.com/mark.feller/rice/raw/master/packages"}
 
     # Set the log output file
     logfile=${logfile:-"/var/log/rice.log"}
 
     trap cleanup INT
 
-    log "Running installer for Fedora"
     pre_install
     install_packages
     install_dots
