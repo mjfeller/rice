@@ -30,6 +30,16 @@ try() {
     "$@" || die "Fatal: $*"
 }
 
+prompt() {
+    # Ask the user for some input.
+    log "$1"
+
+    # POSIX 'read' has none of the "nice" options like '-n', '-p'
+    # etc etc. This is the most basic usage of 'read'.
+    # '_' is used as 'dash' errors when no variable is given to 'read'.
+    read -r "$2"
+}
+
 trim_string() {
     # Usage: trim_string "   example   string    "
     trim=${1#${1%%[![:space:]]*}}
@@ -37,21 +47,44 @@ trim_string() {
     printf '%s\n' "$trim"
 }
 
+getuserandpass() {
+    # Prompts user for new username an password.
+    prompt "Username?" name
+    while ! echo "$name" | grep "^[a-z_][a-z0-9_-]*$" >/dev/null 2>&1; do
+        prompt "Username?" name
+    done
+    prompt "Enter a password for that user." pass1
+    prompt "Retype password." pass2
+    while ! [ "$pass1" = "$pass2" ]; do
+        unset pass2
+        log "Passwords do not match." "" "!>"
+        prompt "Enter password again." pass2
+    done
+}
+
+adduserandpass() {
+    # Adds user `$name` with password $pass1.
+    useradd -m -g wheel -s /bin/zsh "$name" >/dev/null 2>&1 ||
+    usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
+    echo "$name:$pass1" | chpasswd
+    unset pass1 pass2
+}
+
 pre_install() {
     # Run any preinstall setup necessary
-    log "Enabling RPM Fustion"
+    log "Enabling RPM Fustion..."
     try dnf install -y \
         https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm \
         https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm \
         >> "$logfile"
 
-    log "Enabled Fedora community repos"
+    log "Enabling Fedora community repos..."
     try dnf install dnf-plugins-core >> "$logfile"
 
-    log "Enabled i3-gaps community repo"
+    log "Enabling i3-gaps community repo..."
     try dnf copr enable -y gregw/i3desktop >> "$logfile"
 
-    log "Enabled alacritty community repo"
+    log "Enabling alacritty community repo..."
     try dnf copr enable -y pschyska/alacritty >> "$logfile"
 }
 
@@ -59,7 +92,7 @@ install_package() {
     # Install a single package $1 based on its flags $2
     case $2 in
         G)
-            log "Installing go package $1"
+            log "Installing go package $1..."
             try go get -u "$1" >> "$logfile"
             ;;
         *)
@@ -71,7 +104,7 @@ install_package() {
 
 install_packages() {
     # Fetch the package file and install all packages
-    
+
     # Copy a real file to our temp pkgfile or attempt to curl the pkgfile
     ([ -f "$pkgfile" ] && cp "$pkgfile" /tmp/pkgs) || (log "Downloading package list..." && curl -Ls "$pkgfile" > /tmp/pkgs)
 
@@ -87,8 +120,10 @@ EOF
 install_dots() {
     # Clone and install dot files
     log "Fetching dot files"
+    su $name
     git clone "$dotrepo" ~/.config/rice >> "$logfile" || log "Dots have already been cloned"
     (cd ~/.config/rice && stow --target="$HOME" --ignore='gitignore' dots)
+    exit
 }
 
 cleanup() {
@@ -109,6 +144,11 @@ main() {
 
     trap cleanup INT
 
+    # Setup user
+    try getuserandpass
+    try adduserandpass
+
+    # Install packages
     pre_install
     install_packages
     install_dots
