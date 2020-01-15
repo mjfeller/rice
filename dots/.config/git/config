@@ -10,9 +10,7 @@
     insteadOf = https://github.com/
 
 [commit]
-	gpgsign = true
+    # gpgsign = true
 
 [gpg]
 	program = gpg
-[diff "sopsdiffer"]
-	textconv = sops -d
