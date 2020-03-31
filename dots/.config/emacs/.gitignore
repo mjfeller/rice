@@ -1,0 +1,11 @@
+*.elc
+/elpa/
+/etc/*
+/games/
+/lisp/*
+/src/
+
+!.keep
+!/lisp/kubel
+!/lisp/helm
+!/lisp/redeam.el

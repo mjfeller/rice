@@ -1,0 +1,3 @@
+#!/bin/sh
+
+POPUP_GEOMETRY=80x24 popup ncmpcpp
