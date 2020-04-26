@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Display the date using notify-send
-# A nice alternative to displaying the time on a bar.
-
-# Arbitrary but unique message id
-msgId="661049"
-
-notify-send -t 5000 "$(date +"%A, %-d %b %-I:%M")"
