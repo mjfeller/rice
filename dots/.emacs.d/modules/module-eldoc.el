@@ -22,7 +22,8 @@
 ;;; Code:
 
 (use-package eldoc
-  :delight (eldoc-mode))
+  :delight (eldoc-mode)
+  :config (global-eldoc-mode))
 
 (provide 'module-eldoc)
 

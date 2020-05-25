@@ -26,8 +26,8 @@
   :delight yas-minor-mode
   :demand
   :config
-  (progn (yas-load-directory "~/.emacs.d/snippets/")
-         (yas-global-mode 1)))
+  (yas-load-directory "~/.emacs.d/snippets/")
+  (yas-global-mode 1))
 
 (provide 'module-yasnippet)
 

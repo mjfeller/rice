@@ -21,19 +21,6 @@
 
 ;;; Code:
 
-(defun server-shutdown ()
-  "Save buffers, Quit, and Shutdown (kill) server"
-  (interactive)
-  (save-some-buffers)
-  (kill-emacs))
-
-(defun iwb()
-  "Indent Whole Buffer"
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
-
 (defun transpose-words (arg)
   "[Override for default transpose-words in simple.el]
               Interchange words around point, leaving point at end of
@@ -195,13 +182,16 @@ is already narrowed."
 
 (defun resize-wide ()
   (interactive)
-  (set-frame-width (selected-frame) 200)
+  (set-frame-width (selected-frame) 180)
   (set-frame-height (selected-frame) 50))
 
 (defun resize-big ()
   (interactive)
   (set-frame-width (selected-frame) 240)
   (set-frame-height (selected-frame) 70))
+
+(defun disable-line-numbers ()
+  (display-line-numbers-mode -1))
 
 (provide 'core-defuns)
 

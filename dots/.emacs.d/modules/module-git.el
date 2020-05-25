@@ -21,41 +21,31 @@
 
 ;;; Code:
 
+(defun mjf/magit-status-with-prefix ()
+  (interactive)
+  (let ((current-prefix-arg '(4)))
+    (call-interactively 'magit-status)))
+
 (use-package magit
   :bind (("C-x g" . magit-status)
-         ("C-x G" . magit-status-with-prefix))
+         ("C-x G" . mjf/magit-status-with-prefix))
   :init
-  (progn (defun magit-status-with-prefix ()
-           (interactive)
-           (let ((current-prefix-arg '(4)))
-             (call-interactively 'magit-status)))
-
-         (setq transient-history-file (concat persistent-dir "/transient/history.el")
-               transient-display-buffer-action '(display-buffer-below-selected)
-               transient-mode-line-format
-               '("%e" mode-line-front-space mode-line-buffer-identification))))
-
-;; (use-package evil-magit)
-
-(use-package gitignore-mode)
+  (setq transient-history-file "~/.cache/transient/history.el")
+  (setq transient-display-buffer-action '(display-buffer-below-selected))
+  (setq transient-mode-line-format
+        '("%e" mode-line-front-space mode-line-buffer-identification)))
 
 (use-package magithub
   :disabled
   :after magit
   :config
-  (progn (magithub-feature-autoinject t)
-         (setq magithub-api-timeout 5
-               magithub-dir (concat persistent-dir "/magithub"))))
+  (magithub-feature-autoinject t)
+  (setq magithub-api-timeout 5)
+  (setq magithub-dir "~/.cache/magithub"))
+
+(use-package gitignore-mode)
 
 (use-package git-timemachine)
-
-(use-package git-gutter-fringe+
-  :disabled
-  :delight git-gutter+-mode
-  :config
-  (progn (require 'git-gutter-fringe+)
-         (git-gutter-fr+-minimal)
-         (global-git-gutter+-mode)))
 
 (provide 'module-git)
 

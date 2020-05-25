@@ -20,11 +20,6 @@
 
 ;;; Code:
 
-;; (use-package paradox
-;;   :config
-;;   (progn (paradox-enable)
-;;          (add-hook 'paradox-menu-mode-hook (lambda () (display-line-numbers-mode 0)))))
-
 (use-package swiper
   :demand
   :delight (ivy-mode)
@@ -35,17 +30,18 @@
          ("C-c C-o" . ivy-occur)
          ("C-c C-b" . ivy-switch-buffer)
          ("C-c C-k" . kill-buffer))
+  (:map ivy-minibuffer-map
+        ("TAB" . ivy-partial-or-done))
   :config
-  (progn (ivy-mode 1)
-         (setq ivy-height 6)
-         (setq enable-recursive-minibuffers t)
-         (setq swiper-include-line-number-in-search t)
-         (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial-or-done)))
+  (setq ivy-height 6)
+  (setq enable-recursive-minibuffers t)
+  (setq swiper-include-line-number-in-search t)
 
-;; ivy sorted via smex
+  (ivy-mode 1))
+
 (use-package smex
   :demand
-  :config (setq smex-save-file (concat persistent-dir "/smex-items")))
+  :config (setq smex-save-file "~/.cache/smex-items"))
 
 (use-package counsel
   :after (ivy)
@@ -61,12 +57,12 @@
 
 (use-package saveplace
   :config
-  (progn (setq save-place-file (concat persistent-dir "/places")
-               backup-by-copying t
-               delete-old-versions t
-               kept-new-versions 6
-               kept-old-versions 2
-               version-control t)))
+  (setq save-place-file "~/.cache/places"
+        backup-by-copying t
+        delete-old-versions t
+        kept-new-versions 6
+        kept-old-versions 2
+        version-control t))
 
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)
@@ -174,28 +170,30 @@
 (use-package dired
   :ensure nil
   :bind (("C-x C-j" . dired-jump))
+
   :config
-  (progn (setq wdired-use-dired-vertical-movement 'sometimes)
+  (setq wdired-use-dired-vertical-movement 'sometimes)
+  (setq dired-listing-switches "-la")
 
-         (set-face-attribute 'dired-directory nil
-                             :inherit 'default
-                             :foreground "#839496"
-                             :weight 'bold)
+  (set-face-attribute 'dired-directory nil
+                      :inherit 'default
+                      :foreground "#839496"
+                      :weight 'bold)
 
-         (setq dired-listing-switches "-la")
+  (add-hook 'dired-mode-hook 'disable-line-numbers)
 
-         (defun dired-sort-dir-first ()
-           "Sort dired listings with directories first."
-           (save-excursion
-             (let (buffer-read-only)
-               (forward-line 2) ;; beyond dir. header
-               (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-             (set-buffer-modified-p nil)))
+  (defun dired-sort-dir-first ()
+    "Sort dired listings with directories first."
+    (save-excursion
+      (let (buffer-read-only)
+        (forward-line 2) ;; beyond dir. header
+        (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+      (set-buffer-modified-p nil)))
 
-         (defadvice dired-readin
-             (after dired-after-updating-hook first () activate)
-           "Sort dired listings with directories first before adding marks."
-           (dired-sort-dir-first))))
+  (defadvice dired-readin
+      (after dired-after-updating-hook first () activate)
+    "Sort dired listings with directories first before adding marks."
+    (dired-sort-dir-first)))
 
 ;; better describe
 (use-package helpful
@@ -206,8 +204,8 @@
 
 (use-package rg
   :config
-  (progn (rg-enable-default-bindings (kbd "M-s"))
-         (setq rg-executable "/usr/local/bin/rg")))
+  (rg-enable-default-bindings (kbd "M-s"))
+  (setq rg-executable "/usr/local/bin/rg"))
 
 ;; window management
 (bind-keys
@@ -231,31 +229,15 @@
  ;; Misc Window Commands
  ("H-a" . balance-windows)
  ("H-t" . toggle-window-split)
- ("H-<return>". toggle-fullscreen))
+ ("H-<return>". toggle-fullscreen)
 
-(use-package bind-chord
-  :config
-  (progn
-    (key-chord-mode 1)
-
-    (bind-chords
-     ("wh" . windmove-left)
-     ("wj" . windmove-down)
-     ("wk" . windmove-up)
-     ("wl" . windmove-right)
-
-     ("wt" . split-window-horizontally)
-     ("wv" . split-window-vertically)
-     ("wq" . delete-window)
-     ("wa" . balance-windows))
-
-    (setq key-chord-two-key-delay 0.075)))
+ ("H-c" . mjf/center-window))
 
 (delight 'subword-mode "" "subword")
+(delight 'undo-tree-mode "" "undo-tree")
 
-;; woman
-(add-hook 'woman-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook 'Man-mode-hook (lambda () (display-line-numbers-mode 0)))
+(add-hook 'woman-mode-hook 'disable-line-numbers)
+(add-hook 'Man-mode-hook 'disable-line-numbers)
 
 (provide 'core-packages)
 

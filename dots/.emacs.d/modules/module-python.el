@@ -21,42 +21,13 @@
 
 ;;; Code:
 
-(use-package python)
-
-(use-package elpy
-  :bind (:map elpy-mode-map
-              ("C-c C-j" . elpy-goto-definition)
-              ("M-," . pop-tag-mark))
-  :config
-  (progn (setq elpy-rpc-backend "jedi")
-         (elpy-enable)))
-
-
-(use-package pip-requirements
-  :config
-  (add-hook 'pip-requirements-mode-hook #'pip-requirements-auto-complete-setup))
-
-(use-package py-autopep8)
-
-(use-package pyenv-mode
-  :disabled
-  :init
-  (add-to-list 'exec-path "~/.pyenv/shims")
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
-  :config
-  (pyenv-mode)
-  (add-hook 'after-init-hook 'pyenv-init)
-  (add-hook 'projectile-after-switch-project-hook 'pyenv-activate-current-project)
-  :bind
-  ("C-x p e" . pyenv-activate-current-project))
-
 (defun pyenv-init()
   (setq global-pyenv (replace-regexp-in-string "\n" "" (shell-command-to-string "pyenv global")))
   (message (concat "Setting pyenv version to " global-pyenv))
   (pyenv-mode-set global-pyenv)
   (defvar pyenv-current-version nil global-pyenv))
 
-(defun pyenv-activate-current-project ()
+(defun mjf/pyenv-activate-current-project ()
   "Automatically activates pyenv version if .python-version file exists."
   (interactive)
   (f-traverse-upwards
@@ -70,12 +41,32 @@
              (pyvenv-workon pyenv-current-version)
              (message (concat "Setting virtualenv to " pyenv-current-version))))))))
 
+(use-package python
+  :config
+  (setq python-shell-interpreter "ipython")
+  (setq python-shell-interpreter-args "-i --simple-prompt")
 
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i --simple-prompt"
+  ;; Enable hideshow minor mode in python for folding and unfolding
+  (add-hook 'python-mode-hook 'hs-minor-mode))
 
-      ;; when there are a bunch of ^G^G^G this fixes it
-      elpy-shell-echo-output nil)
+(use-package elpy
+  :bind
+  (:map elpy-mode-map
+        ("C-c C-j" . elpy-goto-definition)
+        ("M-,"     . pop-tag-mark))
+
+  :config
+  (setq elpy-rpc-backend "jedi")
+  (setq elpy-rpc-python-command "python3")
+  (setq elpy-shell-echo-output nil)
+
+  (elpy-enable))
+
+(use-package pip-requirements
+  :config
+  (add-hook 'pip-requirements-mode-hook #'pip-requirements-auto-complete-setup))
+
+(use-package py-autopep8)
 
 (provide 'module-python)
 

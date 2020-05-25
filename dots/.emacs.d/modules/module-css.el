@@ -21,9 +21,11 @@
 
 ;;; Code:
 
-(use-package scss-mode)
+(use-package scss-mode
+  :disable)
 
-(use-package less-css-mode)
+(use-package less-css-mode
+  :disable)
 
 (use-package css-eldoc
   :after (eldoc))

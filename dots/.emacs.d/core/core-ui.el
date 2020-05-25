@@ -43,18 +43,18 @@
 (line-number-mode 0)
 (column-number-mode t)
 
-(delete-selection-mode t)              ; Delete Marked regions
-(show-paren-mode t)                    ; Show matching parenthesis
+(delete-selection-mode t) ; Delete Marked regions
+(show-paren-mode t)       ; Show matching parenthesis
 
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default tab-width 8)
 (setq-default indicate-empty-lines nil)
 
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-(setq-default fill-column 80)
+(setq-default fill-column 72)
 
 (add-hook 'before-save-hook 'delete-tailing-whitespace)
 
@@ -65,19 +65,22 @@
 (defun on-after-init ()
   (unless (display-graphic-p (selected-frame))
     (set-face-background 'default "unspecified-bg" (selected-frame))))
+
 (add-hook 'window-setup-hook 'on-after-init)
 
 ;; line numbers
-(setq-default display-line-numbers-width 4)
+(setq-default display-line-numbers-width 3)
 (setq display-line-numbers-type 'relative
       display-line-numbers-current-absolute t
       display-line-numbers-widen nil) ; don't count narrowed regions
 
+(setq-default line-spacing 5)
+
 (global-display-line-numbers-mode)
 
 ;; add some padding around the entire frame and fringes
-(set-fringe-mode 15)
-(set-frame-parameter nil 'internal-border-width 10)
+(set-fringe-mode 25)
+(set-frame-parameter nil 'internal-border-width 0)
 
 (provide 'core-ui)
 

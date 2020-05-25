@@ -1,22 +1,22 @@
-;;; poet-theme.el --- A theme for prose.
+;;; acme-theme.el --- A theme for prose.
 
 ;; Copyright 2018-now Kunal Bhalla
 
 ;; Author: Kunal Bhalla <bhalla.kunal@gmail.com>
-;; URL: https://github.com/kunalb/poet/
+;; URL: https://github.com/kunalb/acme/
 ;; Version: 2.0
 
 ;;; Commentary:
 
 ;; Emacs has very good support for multiple fonts in a single
-;; file.  Poet uses this support to make it much more convenient to
+;; file.  Acme uses this support to make it much more convenient to
 ;; write prose within Emacs, with particular attention paid to
 ;; org-mode and markdown-mode.  Code blocks, tables, etc are
 ;; formatted in monospace text with the appropriate backgrounds.
 
 ;; Recommended customizations for using this theme
 ;;
-;; - Set up the base fonts you'd like to use in Emacs before loading Poet
+;; - Set up the base fonts you'd like to use in Emacs before loading Acme
 ;;     (set-face-attribute 'default nil :family "Iosevka" :height 130)
 ;;     (set-face-attribute 'fixed-pitch nil :family "Iosevka")
 ;;     (set-face-attribute 'variable-pitch nil :family "Baskerville")
@@ -42,21 +42,33 @@
 
 ;;; Code:
 
-(defvar poet--monospace-height
+;; (set-face-attribute 'default nil :family "Roboto Mono")
+;; (set-face-attribute 'default nil :family "Fira Mono")
+;; (set-face-attribute 'default nil :family "Iosevka Slab")
+(set-face-attribute 'default nil :family "Hack")
+
+(defvar acme--monospace-height
  (face-attribute 'fixed-pitch :height nil 'default)
  "The original height stored as a defvar to stay constant across reloads.")
 
-(defun poet--height (multiplier)
+(defun acme--height (multiplier)
  "Scale up the height according to the MULTIPLIER."
- (truncate (* poet--monospace-height multiplier)))
+ (truncate (* acme--monospace-height multiplier)))
 
-(deftheme poet
+(defvar mode-line-spacing 5)
+
+(deftheme acme
   "A prose friendly theme.")
+
+(make-face 'mode-line-height)
 
 (let (
       ;; Primary Colors
       (fg "#444444")
-      (bg "#e1d9c2")
+      (bg "#FFFFea")
+
+      (modeline "#EAFFFF")
+      (modeline-border "#8888cc")
 
       (white-light  "#ffffff")
       (yellow-light "#fff59d")
@@ -80,9 +92,9 @@
       )
   (let (
         (emph "gray13")
-        (sep "gray80")
+        (sep "gray70")
         (hlt "gray93")
-        (bg-hlt "#fff8e1")
+        (bg-hlt "#e4e4e4")
         (meta brown-dark)
         (link "#303f9f")
         (link-underline "#304ffe")
@@ -149,8 +161,11 @@
         (markdown-pre-bg white)
         (markdown-header-delimiter brown)
         (imenu brown-dark))
-    (custom-theme-set-faces 'poet
-                            `(variable-pitch ((t (:family ,(face-attribute 'variable-pitch :family) :height ,(poet--height 1.23)))))
+
+    
+(set-face-attribute 
+    (custom-theme-set-faces 'acme
+                            `(variable-pitch ((t (:family ,(face-attribute 'variable-pitch :family) :height ,(acme--height 1)))))
 
                             `(default ((t (:background ,bg :foreground ,fg))))
                             `(italic ((t (:foreground ,emph :slant italic))))
@@ -177,9 +192,13 @@
                             `(minibuffer-prompt ((t (:inherit fixed-pitch :weight bold :foreground ,meta))))
 
                             ;; mode line
-                            `(header-line         ((t (:overline nil :background ,header-line-bg :box (:line-width 3 :color ,header-line-bg) :underline ,sep :inherit mode-line))))
-                            `(mode-line           ((t (:inherit fixed-pitch :foreground ,mode-line-fg :background ,bg :overline ,sep :box (:line-width 8 :color ,bg)))))
-                            `(mode-line-inactive  ((t (:inherit mode-line :background ,bg :foreground ,mode-line-inactive :box (:color ,bg :line-width 8)))))
+
+
+                            `(header-line         ((t (:overline nil :background ,header-line-bg :box (:line-width 1 :color "#8888cc") :underline ,sep :inherit mode-line))))
+                            `(mode-line           ((t (:inherit fixed-pitch :foreground ,mode-line-fg       :background ,modeline :overline ,modeline-border :box (:line-width 1 :color ,modeline-border)))))
+                            `(mode-line-inactive  ((t (:inherit fixed-pitch :foreground ,mode-line-inactive :background ,modeline :overline ,modeline-border :box (:line-width 1 :color ,modeline-border)))))
+                            `(mode-line-height    ((t (:foreground ,modeline-border :background ,modeline-border :box (:line-width ,mode-line-spacing :color ,modeline-border)))))
+
                             `(mode-line-buffer-id ((t (:weight bold))))
                             `(mode-line-emphasis  ((t (:weight bold))))
                             `(mode-line-highlight ((t (:background ,mode-line-hlt))))
@@ -203,31 +222,31 @@
                             `(font-lock-warning-face ((t (:inherit error))))
 
                             ;; Org
-                            `(org-level-1 ((t (:inherit default :foreground ,header :height ,(poet--height 1.5)))))
-                            `(org-level-2 ((t (:inherit default :foreground ,header :height ,(poet--height 1.4)))))
-                            `(org-level-3 ((t (:inherit default :foreground ,header :height ,(poet--height 1.3)))))
-                            `(org-level-4 ((t (:inherit default :foreground ,header :height ,(poet--height 1.23)))))
-                            `(org-level-5 ((t (:inherit default :foreground ,header :height ,(poet--height 1.23)))))
-                            `(org-level-6 ((t (:inherit default :foreground ,header :height ,(poet--height 1.23)))))
-                            `(org-level-7 ((t (:inherit default :foreground ,header :height ,(poet--height 1.23)))))
-                            `(org-level-8 ((t (:inherit default :foreground ,header :height ,(poet--height 1.23)))))
+                            `(org-level-1 ((t (:inherit default :foreground ,header :height ,(acme--height 1.5)))))
+                            `(org-level-2 ((t (:inherit default :foreground ,header :height ,(acme--height 1.4)))))
+                            `(org-level-3 ((t (:inherit default :foreground ,header :height ,(acme--height 1.3)))))
+                            `(org-level-4 ((t (:inherit default :foreground ,header :height ,(acme--height 1.23)))))
+                            `(org-level-5 ((t (:inherit default :foreground ,header :height ,(acme--height 1.23)))))
+                            `(org-level-6 ((t (:inherit default :foreground ,header :height ,(acme--height 1.23)))))
+                            `(org-level-7 ((t (:inherit default :foreground ,header :height ,(acme--height 1.23)))))
+                            `(org-level-8 ((t (:inherit default :foreground ,header :height ,(acme--height 1.23)))))
                             `(org-meta-line ((t (:inherit fixed-pitch :foreground ,org-meta))))
                             `(org-document-info-keyword ((t (:inherit fixed-pitch :foreground ,org-document-info))))
                             `(org-document-info ((t (:inherit default :foreground ,org-document-info))))
                             `(org-verbatim ((t (:inherit fixed-pitch))))
                             `(org-table ((t (:inherit fixed-pitch :background ,org-table))))
-                            `(org-formula ((t (:inherit org-table :height ,(poet--height 1)))))
+                            `(org-formula ((t (:inherit org-table :height ,(acme--height 1)))))
                             `(org-quote ((t (:inherit default :foreground ,org-quote-fg :background ,org-quote-bg))))
                             `(org-hide ((t (:inherit fixed-pitch :foreground ,bg))))
                             `(org-indent ((t (:inherit org-hide))))
                             `(org-date ((t (:inherit fixed-pitch :foreground ,org-date :underline nil))))
-                            `(org-document-title ((t (:inherit default :foreground ,org-title :height ,(poet--height 1.8) :underline (:color ,org-title-underline)))))
+                            `(org-document-title ((t (:inherit default :foreground ,org-title :height ,(acme--height 1.8) :underline (:color ,org-title-underline)))))
                             `(org-checkbox ((t (:inherit fixed-pitch :weight bold :foreground ,org-checkbox))))
                             `(org-scheduled ((t (:foreground ,org-scheduled))))
                             `(org-scheduled-today ((t (:foreground ,org-scheduled-today))))
                             `(org-done ((t (:inherit fixed-pitch :foreground ,org-done))))
                             `(org-todo ((t (:inherit fixed-pitch :foreground ,org-todo))))
-                            `(org-tag ((t (:inherit fixed-pitch :height ,(poet--height 1) :foreground ,org-tag))))
+                            `(org-tag ((t (:inherit fixed-pitch :height ,(acme--height 1) :foreground ,org-tag))))
                             `(org-block-begin-line ((t (:inherit fixed-pitch :background ,org-block-line))))
                             `(org-block-end-line ((t (:inherit fixed-pitch :background ,org-block-line))))
                             `(org-block ((t (:background ,org-block-bg :inherit fixed-pitch))))
@@ -246,18 +265,18 @@
                             `(line-number-current-line ((t (:inherit fixed-pitch :foreground ,linum-hlt))))
 
                             ;; markdown
-                            `(markdown-header-face-1 ((t (:foreground ,header :inherit default :height ,(poet--height 1.5)))))
-                            `(markdown-header-face-2 ((t (:foreground ,header :inherit default :height ,(poet--height 1.4)))))
-                            `(markdown-header-face-3 ((t (:foreground ,header :inherit default :height ,(poet--height 1.3)))))
-                            `(markdown-header-face-4 ((t (:foreground ,header :inherit default :height ,(poet--height 1.23)))))
-                            `(markdown-header-face-5 ((t (:foreground ,header :inherit default :height ,(poet--height 1.23)))))
-                            `(markdown-header-face-6 ((t (:foreground ,header :inherit default :height ,(poet--height 1.23)))))
-                            `(markdown-header-face-7 ((t (:foreground ,header :inherit default :height ,(poet--height 1.23)))))
-                            `(markdown-header-face-8 ((t (:foreground ,header :inherit default :height ,(poet--height 1.23)))))
+                            `(markdown-header-face-1 ((t (:foreground ,header :inherit default :height ,(acme--height 1.5)))))
+                            `(markdown-header-face-2 ((t (:foreground ,header :inherit default :height ,(acme--height 1.4)))))
+                            `(markdown-header-face-3 ((t (:foreground ,header :inherit default :height ,(acme--height 1.3)))))
+                            `(markdown-header-face-4 ((t (:foreground ,header :inherit default :height ,(acme--height 1.23)))))
+                            `(markdown-header-face-5 ((t (:foreground ,header :inherit default :height ,(acme--height 1.23)))))
+                            `(markdown-header-face-6 ((t (:foreground ,header :inherit default :height ,(acme--height 1.23)))))
+                            `(markdown-header-face-7 ((t (:foreground ,header :inherit default :height ,(acme--height 1.23)))))
+                            `(markdown-header-face-8 ((t (:foreground ,header :inherit default :height ,(acme--height 1.23)))))
                             `(markdown-markup-face ((t (:inherit fixed-pitch :foreground ,markdown-markup))))
                             `(markdown-inline-code-face ((t (:inherit fixed-pitch))))
-                            `(markdown-metadata-key-face ((t (:inherit fixed-pitch :height ,(poet--height 1) :foreground ,markdown-metadata))))
-                            `(markdown-metadata-value-face ((t (:inherit fixed-pitch :height ,(poet--height 1) :foreground ,fg))))
+                            `(markdown-metadata-key-face ((t (:inherit fixed-pitch :height ,(acme--height 1) :foreground ,markdown-metadata))))
+                            `(markdown-metadata-value-face ((t (:inherit fixed-pitch :height ,(acme--height 1) :foreground ,fg))))
                             `(markdown-language-keyword-face ((t (:foreground ,markdown-language))))
                             `(markdown-list-face ((t (:inherit fixed-pitch :foreground ,markdown-list))))
                             `(markdown-code-face ((t (:inherit fixed-pitch :foreground ,fg :background ,markdown-code-bg))))
@@ -287,17 +306,25 @@
                             `(tldr-code-block  ((t ())))
                             `(tldr-command-argument ((t ())))
 
+                            `(company-tooltip-selection        ((t (:background "#ddffdd"))))
+                            `(company-tooltip-selection        ((t (:background "#cee7cf"))))
+                            `(company-tooltip-common           ((t (:inherit fixed-pitch :foreground nil :underline nil :weight bold))))
+                            `(company-scrollbar-fg             ((t (:background "#388E3C"))))
+                            `(company-preview-common           ((t (:underline nil))))
+                            `(company-tooltip-common           ((t (:underline nil))))
+                            `(company-tooltip-common-selection ((t (:underline nil))))
+
                             ;; evil
                             `(evil-ex-substitute-replacement ((t (:foreground ,white-light :background ,brown-dark :underline nil))))
                             `(evil-goggles-delete-face ((t (:inherit 'lazy-highlight))))
                             `(evil-goggles-paste-face  ((t (:inherit 'lazy-highlight))))
                             `(evil-goggles-yank-face   ((t (:inherit 'lazy-highlight))))
 
-                            `(helm-source-header ((t (:height ,(poet--height 1))))))
+                            `(helm-source-header ((t (:height ,(acme--height 1))))))
 
-    (custom-theme-set-variables 'poet
+    (custom-theme-set-variables 'acme
                                 '(line-spacing 0.4)
-                                `(fci-rule-color ,fci))))
+                                `(fci-rule-color ,fci)))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path)
@@ -306,5 +333,5 @@
                (file-name-as-directory
                 (file-name-directory load-file-name))))
 
-(provide-theme 'poet)
-;;; poet-theme.el ends here
+(provide-theme 'acme)
+;;; acme-theme.el ends here

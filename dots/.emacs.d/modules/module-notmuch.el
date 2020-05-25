@@ -19,22 +19,53 @@
 
 ;;; Commentary:
 
+;; Notmuch mail provides email indexing and searching based on tags. See
+;; https://notmuchmail.org/
+
 ;;; Code:
 
+(defun mjf/tag-deleted ()
+  "Tag mail at point as deleted"
+  (interactive)
+  (notmuch-search-tag '("+deleted" "-inbox" "-unread"))
+  (next-line))
+
+(defun mjf/delete-tagged-mail ()
+  "Delete mail that is tagged with the deleted tag"
+  (interactive)
+  (shell-command "notmuch_delete")
+  (notmuch-refresh-all-buffers))
+
+(defun mjf/getmail ()
+  "Fetch mail using getmail"
+  (interactive)
+  (message "Fetching mail...")
+  (shell-command "getmail")
+  (notmuch-hello-update))
+
 (use-package notmuch
+  :bind
+  (:map notmuch-search-mode-map
+        ("d" . mjf/tag-deleted)
+        ("D" . mjf/delete-tagged-mail))
+  (:map notmuch-tree-mode-map
+        ("d" . mjf/tag-deleted)
+        ("D" . mjf/delete-tagged-mail))
+  (:map notmuch-hello-mode-map
+        ("r" . mjf/getmail))
+
   :config
-  (progn (setq user-full-name "Mark Feller")
+  (add-hook 'notmuch-hello-mode-hook 'disable-line-numbers)
+  (add-hook 'notmuch-search-mode-hook 'disable-line-numbers)
+  (add-hook 'notmuch-tree-mode-hook 'disable-line-numbers)
 
-         (setq message-sendmail-envelope-from 'header)
-         (add-hook 'message-send-mail-hook 'cg-feed-msmtp)
-
-         (setq notmuch-saved-searches
-               '((:name "inbox"       :query "tag:inbox"              :key "i")
-                 (:name "unread"      :query "tag:unread"             :key "u")
-                 (:name "sent"        :query "tag:sent"               :key "t")
-                 (:name "drafts"      :query "tag:draft"              :key "d")
-                 (:name "guix-devel"  :query "guix-devel tag:unread"  :key "g")
-                 (:name "emacs-devel" :query "emacs-devel tag:unread" :key "e")))))
+  (setq notmuch-saved-searches
+        '((:name "inbox"    :query "tag:inbox"   :key "i")
+          (:name "unread"   :query "tag:unread"  :key "u")
+          (:name "all"      :query "*"           :key "a")
+          (:name "deleted"  :query "tag:deleted")
+          (:name "sent"     :query "tag:sent"    :key "t")
+          (:name "drafts"   :query "tag:draft"   :key "d"))))
 
 (provide 'module-notmuch)
 

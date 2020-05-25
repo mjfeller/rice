@@ -23,11 +23,13 @@
 
 (use-package projectile
   :delight (projectile-mode)
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . 'projectile-command-map))
   :config
-  (progn (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-         (setq projectile-completion-system 'ivy
-               projectile-cache-file (expand-file-name "projectile-cache" persistent-dir)
-               projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" persistent-dir))))
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-cache-file "~/.cache/projectile-cache")
+  (setq projectile-known-projects-file "~/.cache/projectile-bookmarks.eld"))
 
 (use-package counsel-projectile
   :after (counsel projectile)

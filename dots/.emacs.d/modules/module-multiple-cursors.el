@@ -5,6 +5,6 @@
          ("C-c C-<"     . mc/mark-all-like-this)
          ("C-S-SPC"     . set-rectangular-region-anchor)
          ("C-S-c C->"   . mc/mark-sgml-tag-pair))
-  :init (setq mc/list-file (expand-file-name "mc-lists.el" persistent-dir)))
+  :init (setq mc/list-file "~/.cache/mc-lists.el"))
 
 (provide 'module-multiple-cursors)
