@@ -12,6 +12,7 @@ export EDITOR=vim
 export PAGER=less
 export SHELL=zsh
 export MANPATH=$MANPATH:/usr/local/share/
+export MANWIDTH=72
 
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export HISTFILE=$XDG_CACHE_HOME/bash_history
