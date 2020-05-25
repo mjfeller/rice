@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 # Lock i3 using a blurred image of the desktop
 
 PICTURE=/tmp/i3lock.png

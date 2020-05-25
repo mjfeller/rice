@@ -3,7 +3,7 @@ ncmpcpp_directory       = "~/.config/ncmpcpp"
 lyrics_directory        = "~/.config/ncmpcpp/lyrics"
 
 # mpd
-mpd_music_dir                    = "~/Music"
+mpd_music_dir                    = "~/music"
 mpd_port                         = "6600"
 playlist_disable_highlight_delay = 1
 message_delay_time               = 3
@@ -58,4 +58,4 @@ visualizer_sync_interval = "30"
 visualizer_look          = "∙▋"
 visualizer_in_stereo     = "yes"
 
-#execute_on_song_change = "$HOME/.local/bin/notify-mpd"
+#execute_on_song_change = "$HOME/.local/bin/notify_mpd"

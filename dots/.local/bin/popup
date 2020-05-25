@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Create a dwm popup terminal running $1.
+
+st -c Center -g ${POPUP_GEOMETRY:-80x24} -e $@ &

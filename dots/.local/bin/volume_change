@@ -18,4 +18,4 @@ NOW=$(pactl list sinks \
           | tail -n 1 \
           | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
 
-dunstify -r $msgId "<b>Volume</b> ${NOW}%"
+notify-send "<b>Volume</b> ${NOW}%"

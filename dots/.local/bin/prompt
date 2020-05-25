@@ -1,7 +1,8 @@
 #!/bin/sh
-# A rofi binary prompt script.
-# Gives a rofi prompt labeled with $1 to perform command $2.
+#
+# A dmenu prompt script.
+# Gives a demu prompt labeled with $1 to perform command $2.
 # For example:
 # `./prompt "Do you want to shutdown?" "shutdown -h now"`
 
-[ "$(printf "No\\nYes" | rofi -dmenu -i -p "$1" -nb darkred -sb red -sf white -nf gray )" = "Yes" ] && $2
+[ "$(printf "No\\nYes" | dmenu -i -c -l 2 -p "$1")" = "Yes" ] && $2

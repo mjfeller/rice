@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Select a manpage and spawn a popup terminal with it.
+
+unset MANWIDTH
+manpage=$(man -k . | /usr/local/bin/dmenu -i -bw 6 -c -l 20 | awk '{ print $1 }')
+[ -z $manpage ] || POPUP_GEOMETRY=90x45 popup man $manpage

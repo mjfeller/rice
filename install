@@ -1,4 +1,5 @@
 #!/bin/sh
+cd "$(dirname "$0")" || exit
 
 shared() {
     cp -rv dots/.config/git       $HOME/.config

@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-center --image-bg '#637d6e' '/home/mjf/pictures/glenda_transparent.png' 

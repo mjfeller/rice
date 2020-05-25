@@ -1,1 +1,23 @@
+set shell sh
 set hidden
+set color256
+
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+
+cmd delete ${{
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf $fx
+}}
+
+cmd openshell ${{
+	set -f
+	zsh
+}}
+
+map D delete
+map r push :rename<space>
+map <enter> shell
+map S openshell
