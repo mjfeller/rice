@@ -1,6 +1,6 @@
 Installation
 ============
 
-Install packages and dot files::
+Install dot files::
 
-  $ curl -L mfeller.io/install.sh | sudo sh
+  $ ./install
