@@ -1,26 +1,31 @@
 source $HOME/.config/oh-my-zsh/oh-my-zsh.sh
 source $HOME/.config/zsh/fzf.zsh
 source $HOME/.config/zsh/kubernetes.zsh
-source $HOME/.config/zsh/recurly.zsh
+source $HOME/.config/zsh/terraform.zsh
 source $HOME/.config/zsh/gcloud.zsh
-source $HOME/.config/zsh/private.zsh
 source $HOME/.config/aliases
 
 # oh my zsh plugins
 plugins=(
-  colored-man-pages
-  compleat
-  git
+    colored-man-pages
+    compleat
+    git
 )
 
 # setup prompt
 git_prompt() {
     ref=$(git_current_branch)
-    if [ ! -z "$ref" ]; then
-       echo "%F{cyan}$ref%f "
-    fi
+    [ -z "$ref" ] || echo "%F{cyan}$ref%f "
 }
-PROMPT='%F{241}λ %2~%f $(git_prompt)%B%F{241}»%b%f '
+kube_prompt() {
+    ctx=$(kubectl config current-context 2> /dev/null)
+    [ -z "$ctx" ] || echo "%F{green}$ctx%f "
+}
+PROMPT='%F{241}λ %2~%f $(kube_prompt)$(git_prompt)%B%F{241}»%b%f '
+
+toggle_kube_promt() {
+	PROMPT='%F{241}λ %2~%f $(git_prompt)%B%F{241}»%b%f '
+}
 
 # history in cache directory
 HISTSIZE=10000

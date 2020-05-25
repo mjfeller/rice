@@ -1,22 +1,18 @@
 [user]
     name = Mark Feller
-    email = mfeller@recurly.com
-    signingkey = BF5DA997A2A9913EB2B453C56A84C7868F1E023F
+    email = mjfeller1992@gmail.com
+    signingkey = D1895EF4221D0862624FA97AED1A8A284EED7C47 
 
-[core]
-  hooksPath = ~/.config/git/hooks
+#[core]
+#  hooksPath = ~/.config/git/hooks
 
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
-
-[url "ssh://git@gitlab.com/"]
-    insteadOf = https://gitlab.com/
-
-[url "ssh://git@bitbucket.org/"]
-    insteadOf = https://bitbucket.org/
 
 [commit]
 	gpgsign = true
 
 [gpg]
 	program = gpg
+[diff "sopsdiffer"]
+	textconv = sops -d
