@@ -8,15 +8,19 @@ shared() {
     cp -rv dots/.config/ncmpcpp   $HOME/.config
     cp -rv dots/.config/notmuch   $HOME/.config
     cp -rv dots/.config/zsh       $HOME/.config
-    cp -rv dots/.config/aliases   $HOME/.config
+    cp -rv dots/.config/aliasrc   $HOME/.config
     cp -rv dots/.emacs.d          $HOME
     cp -rv dots/.local            $HOME
 }
 
 linux() {
-    cp -rv dots/.config/compton $HOME/.config
-    cp -rv dots/.config/dunst   $HOME/.config
-    cp -rv dots/.config/vis     $HOME/.config
+    cp -rv dots/.config/compton       $HOME/.config
+    cp -rv dots/.config/dunst         $HOME/.config
+    cp -rv dots/.config/vis           $HOME/.config
+    cp -rv dots/.config/mimeapps.list $HOME/.config
+    cp -rv dots/.xinitrc  $HOME
+    cp -rv dots/.xprofile $HOME
+    cp -rv dots/.zprofile $HOME
 }
 
 macos() {
@@ -25,4 +29,4 @@ macos() {
     cp -rv dots/.config/alacritty $HOME/.config
 }
 
-macos
+$@

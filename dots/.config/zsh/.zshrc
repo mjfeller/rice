@@ -3,7 +3,7 @@ source $HOME/.config/zsh/fzf.zsh
 source $HOME/.config/zsh/kubernetes.zsh
 source $HOME/.config/zsh/terraform.zsh
 source $HOME/.config/zsh/gcloud.zsh
-source $HOME/.config/aliases
+source $HOME/.config/aliasrc
 
 # oh my zsh plugins
 plugins=(
