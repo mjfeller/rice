@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+notmuch search --output=files tag:deleted | tr '\n' '\0' | xargs -0 -L 1 rm
+notmuch new
