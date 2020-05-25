@@ -7,11 +7,13 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
 export PATH=$PATH:$HOME/.local/bin/
+export PATH=$PATH:/usr/local/bin
 
 export EDITOR=nvim
 export READER=zathura
 export SHELL=zsh
 export TERMINAL=st
+export PAGER=less
 
 export MANWIDTH=80
 export LESSHISTFILE=-

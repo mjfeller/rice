@@ -1,6 +1,7 @@
 #!/bin/sh
 
-alias ls="ls -F --group-directories-first"
+# alias ls="ls -F --group-directories-first"
+alias ls="ls -F"
 alias l="ls -lah"
 alias cp="cp -iv"
 alias mv="mv -iv"
