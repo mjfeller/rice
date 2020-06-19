@@ -236,8 +236,11 @@
 (delight 'subword-mode "" "subword")
 (delight 'undo-tree-mode "" "undo-tree")
 
+; Disable line numbers on modes I prefer not to have then
 (add-hook 'woman-mode-hook 'disable-line-numbers)
 (add-hook 'Man-mode-hook 'disable-line-numbers)
+(add-hook 'info-mode-hook 'disable-line-numbers)
+(add-hook 'custom-mode-hook 'disable-line-numbers)
 
 (provide 'core-packages)
 
