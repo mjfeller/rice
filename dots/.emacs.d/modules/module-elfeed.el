@@ -31,12 +31,23 @@
   "bestvideo[height<=?720][fps<=?30]+bestaudio/best"
   "Video and audio format for downloaded youtube content")
 
+(defvar mjf/ytdl-audo-format
+  "--extract-audio --audio-quality 0 --audio-format flac"
+  "Youtube Download audio format flags")
+
 (defun mjf/play-video-at-point ()
   "Play the link at point with mpv"
   (interactive)
   (shell-command (format "mpv --ytdl-format='%s' '%s' &"
                          mjf/elfeed-ytdl-format
                          (thing-at-point 'url))))
+
+(defun mjf/ytdl-audio (url)
+  "Download a youtube video as audio"
+  (let ((default-directory "~/Downloads"))
+    (async-shell-command (format "youtube-dl %s '%s'"
+                                 mjf/ytdl-audo-format
+                                 url))))
 
 (defun mjf/yt-channel-feed (channel)
   "Create an elfeed feed for a given YouTube channel"
@@ -50,10 +61,26 @@
                       playlist)))
     `(,feed youtube)))
 
+(defun mjf/elfeed-search-download-audio ()
+  "Visit the current entry in your browser using `browse-url'.
+If there is a prefix argument, visit the current entry in the
+browser defined by `browse-url-generic-program'."
+  (interactive)
+  (let ((entries (elfeed-search-selected)))
+    (cl-loop for entry in entries
+             do (elfeed-untag entry 'unread)
+             when (elfeed-entry-link entry)
+             do (mjf/ytdl-audio it))
+    (mapc #'elfeed-search-update-entry entries)
+    (unless (or elfeed-search-remain-on-entry (use-region-p))
+      (forward-line))))
+
 (use-package elfeed
   :bind
   (:map elfeed-show-mode-map
         ("C-c o" . mjf/play-video-at-point))
+  (:map elfeed-search-mode-map
+        ("a" . mjf/elfeed-search-download-audio))
 
   :config
   (setq elfeed-db-directory "~/.local/share/elfeed")
