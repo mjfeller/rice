@@ -112,6 +112,7 @@
 (require 'module-evil)
 (require 'module-git)
 (require 'module-go)
+(require 'module-ledger)
 (require 'module-multiple-cursors)
 (require 'module-notmuch)
 (require 'module-org)
