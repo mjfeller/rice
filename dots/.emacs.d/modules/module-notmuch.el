@@ -24,8 +24,21 @@
 
 ;;; Code:
 
+(require 'smtpmail)
+
+(defun mjf/initialize-gmail ()
+  "Configure smtpmail to use gmail"
+  (setq message-send-mail-function   'smtpmail-send-it
+        send-mail-function           'smtpmail-send-it
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server         "smtp.gmail.com"
+        smtpmail-local-domain        "gmail.com"
+        smtpmail-stream-type         'ssl
+        smtpmail-smtp-service        465))
+
 (defun mjf/tag-deleted ()
-  "Tag mail at point as deleted"
+  "Tag mail at point as deleted. This operation will not delete
+the mail, but tag it for later deletion."
   (interactive)
   (notmuch-search-tag '("+deleted" "-inbox" "-unread"))
   (next-line))
@@ -47,7 +60,8 @@
   :bind
   (:map notmuch-search-mode-map
         ("d" . mjf/tag-deleted)
-        ("D" . mjf/delete-tagged-mail))
+        ("D" . mjf/delete-tagged-mail)
+        ("/" . notmuch-search))
   (:map notmuch-tree-mode-map
         ("d" . mjf/tag-deleted)
         ("D" . mjf/delete-tagged-mail))
