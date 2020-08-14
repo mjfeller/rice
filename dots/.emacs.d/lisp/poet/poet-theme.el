@@ -42,10 +42,8 @@
 
 ;;; Code:
 
-;; (set-face-attribute 'default nil :family "Roboto Mono")
-;; (set-face-attribute 'default nil :family "Fira Mono")
-;; (set-face-attribute 'default nil :family "Iosevka Slab")
-(set-face-attribute 'default nil :family "Hack")
+(set-face-attribute 'default nil :family "Roboto Mono")
+(set-face-attribute 'fixed-pitch nil :family "Roboto Mono")
 
 (defvar poet--monospace-height
  (face-attribute 'fixed-pitch :height nil 'default)
