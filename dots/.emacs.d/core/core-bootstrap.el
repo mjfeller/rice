@@ -29,6 +29,7 @@
 (setq package-user-dir "~/.cache/elpa")
 (setq package-archives
       '(("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+        ("melpa"        . "http://melpa.milkbox.net/packages/")
         ("gnu"          . "http://elpa.gnu.org/packages/")
         ("org"          . "http://orgmode.org/elpa/")))
 

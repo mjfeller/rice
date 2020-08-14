@@ -67,96 +67,94 @@
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)
          :map ibuffer-mode-map
-         ("/ m"     . ibuffer-set-filter-groups-by-mode))
+         ("/ p"     . ibuffer-projectile-set-filter-groups))
   :config
-  (progn (setq ibuffer-default-sorting-mode 'major-mode
-               ibuffer-display-summary nil)
+  (setq ibuffer-default-sorting-mode 'major-mode)
+  (setq ibuffer-display-summary nil)
+  (setq ibuffer-expert t)
+  (setq ibuffer-show-empty-filter-groups nil)
+  (setq ibuffer-marked-char ?-)
 
-         (defun ibuffer-get-major-modes-ibuff-rules-list (mm-list result-list)
-           (if mm-list
-               (let* ((cur-mm (car mm-list))
-                      (next-res-list-el `(,(symbol-name cur-mm) (mode . ,cur-mm))))
-                 (ibuffer-get-major-modes-ibuff-rules-list
-                  (cdr mm-list) (cons next-res-list-el result-list)))
-             result-list))
+  (add-hook 'ibuffer-mode-hook 'disable-line-numbers)
+  (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-auto-mode 1)))
 
-         (defun ibuffer-get-major-modes-list ()
-           (mapcar
-            (function (lambda (buffer)
-                        (buffer-local-value 'major-mode (get-buffer buffer))))
-            (buffer-list (selected-frame))))
+  (defun ibuffer-get-major-modes-ibuff-rules-list (mm-list result-list)
+    (if mm-list
+        (let* ((cur-mm (car mm-list))
+               (next-res-list-el `(,(symbol-name cur-mm) (mode . ,cur-mm))))
+          (ibuffer-get-major-modes-ibuff-rules-list
+           (cdr mm-list) (cons next-res-list-el result-list)))
+      result-list))
 
-         (defun ibuffer-create-buffs-group ()
-           (interactive)
-           (let* ((ignore-modes '(Buffer-menu-mode
-                                  compilation-mode
-                                  minibuffer-inactive-mode
-                                  ibuffer-mode
-                                  magit-process-mode
-                                  messages-buffer-mode
-                                  fundamental-mode
-                                  completion-list-mode
-                                  help-mode
-                                  Info-mode))
-                  (cur-bufs
-                   (list (cons "Home"
-                               (ibuffer-get-major-modes-ibuff-rules-list
-                                (cl-set-difference
-                                 (remove-duplicates
-                                  (ibuffer-get-major-modes-list))
-                                 ignore-modes) '())))))
-             (setq ibuffer-saved-filter-groups cur-bufs)
-             (ibuffer-switch-to-saved-filter-groups "Home")))
+  (defun ibuffer-get-major-modes-list ()
+    (mapcar
+     (function (lambda (buffer)
+                 (buffer-local-value 'major-mode (get-buffer buffer))))
+     (buffer-list (selected-frame))))
 
-         (autoload 'ibuffer "ibuffer" "List buffers." t)
+  (defun ibuffer-create-buffs-group ()
+    (interactive)
+    (let* ((ignore-modes '(Buffer-menu-mode
+                           compilation-mode
+                           minibuffer-inactive-mode
+                           ibuffer-mode
+                           magit-process-mode
+                           messages-buffer-mode
+                           fundamental-mode
+                           completion-list-mode
+                           help-mode
+                           Info-mode))
+           (cur-bufs
+            (list (cons "Home"
+                        (ibuffer-get-major-modes-ibuff-rules-list
+                         (cl-set-difference
+                          (remove-duplicates
+                           (ibuffer-get-major-modes-list))
+                          ignore-modes) '())))))
+      (setq ibuffer-saved-filter-groups cur-bufs)
+      (ibuffer-switch-to-saved-filter-groups "Home")))
 
-         (defun ibuffer-group-by-modes ()
-           "Group buffers by modes."
-           (ibuffer-create-buffs-group))
+  (autoload 'ibuffer "ibuffer" "List buffers." t)
 
-         (add-hook 'ibuffer-hook 'ibuffer-group-by-modes)
+  (defun ibuffer-group-by-modes ()
+    "Group buffers by modes."
+    (ibuffer-create-buffs-group))
 
-         (setq ibuffer-expert t)
 
-         ;; Environment Variables
-         (setq ibuffer-show-empty-filter-groups nil)
-         (setq ibuffer-marked-char ?-)
-         (add-hook 'ibuffer-mode-hook (lambda () (ibuffer-auto-mode 1)))
+  (defadvice ibuffer-update-title-and-summary (after remove-column-titles)
+    (with-no-warnings
+      (save-excursion
+        (set-buffer "*Ibuffer*")
+        (toggle-read-only 0)
+        (goto-char 1)
+        (search-forward "-\n" nil t)
+        (delete-region 1 (point))
+        ;; (let ((window-min-height 1))
+        ;;   ;; save a little screen estate
+        ;;   (shrink-window-if-larger-than-buffer))
+        (toggle-read-only))))
 
-         (defadvice ibuffer-update-title-and-summary (after remove-column-titles)
-           (with-no-warnings
-             (save-excursion
-               (set-buffer "*Ibuffer*")
-               (toggle-read-only 0)
-               (goto-char 1)
-               (search-forward "-\n" nil t)
-               (delete-region 1 (point))
-               ;; (let ((window-min-height 1))
-               ;;   ;; save a little screen estate
-               ;;   (shrink-window-if-larger-than-buffer))
-               (toggle-read-only))))
+  (ad-activate 'ibuffer-update-title-and-summary)
 
-         (ad-activate 'ibuffer-update-title-and-summary)
+  ;; Use human readable Size column instead of original one
+  (define-ibuffer-column size-h
+    (:name "Size" :inline t)
+    (cond
+     ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+     ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+     ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+     (t (format "%8d" (buffer-size)))))
 
-         ;; Use human readable Size column instead of original one
-         (define-ibuffer-column size-h
-           (:name "Size" :inline t)
-           (cond
-            ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-            ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
-            ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
-            (t (format "%8d" (buffer-size)))))
-
-         ;; Modify the default ibuffer-formats
-         (setq ibuffer-formats
-               '((mark modified read-only " "
-                       (name 18 18 :left :elide)
-                       " "
-                       (size-h 9 -1 :right)
-                       " "
-                       (mode 16 16 :left :elide)
-                       " "
-                       filename-and-process)))))
+  ;; Modify the default ibuffer-formats
+  (setq ibuffer-formats
+        '((mark modified read-only " "
+                (name 18 18 :left :elide)
+                " "
+                (size-h 9 -1 :right)
+                " "
+                (mode 16 16 :left :elide)
+                " "
+                filename-and-process))))
 
 (use-package autopair
   :delight (autopair-mode)
@@ -195,12 +193,21 @@
     "Sort dired listings with directories first before adding marks."
     (dired-sort-dir-first)))
 
+(use-package dired-subtree
+  :after dired
+  :bind (:map dired-mode-map
+              ("<tab>" . dired-subtree-toggle)
+              ("C-<tab>" . dired-subtree-cycle)
+              ("<backtab>" . dired-subtree-remove)))
+
 ;; better describe
 (use-package helpful
   :bind (("C-h f" . helpful-function)
          ("C-h o" . helpful-symbol)
          ("C-h k" . helpful-key)
-         ("C-h v" . helpful-variable)))
+         ("C-h v" . helpful-variable))
+  :config
+  (add-hook 'helpful-mode-hook 'disable-line-numbers))
 
 (use-package rg
   :config
@@ -236,11 +243,8 @@
 (delight 'subword-mode "" "subword")
 (delight 'undo-tree-mode "" "undo-tree")
 
-; Disable line numbers on modes I prefer not to have then
 (add-hook 'woman-mode-hook 'disable-line-numbers)
 (add-hook 'Man-mode-hook 'disable-line-numbers)
-(add-hook 'info-mode-hook 'disable-line-numbers)
-(add-hook 'custom-mode-hook 'disable-line-numbers)
 
 (provide 'core-packages)
 
