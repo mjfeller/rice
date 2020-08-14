@@ -45,7 +45,12 @@
 ;; (set-face-attribute 'default nil :family "Roboto Mono")
 ;; (set-face-attribute 'default nil :family "Fira Mono")
 ;; (set-face-attribute 'default nil :family "Iosevka Slab")
-(set-face-attribute 'default nil :family "Hack")
+;; (set-face-attribute 'default nil :family "Hack")
+(set-face-attribute 'default nil :family "Roboto Mono")
+(set-face-attribute 'fixed-pitch nil :family "Roboto Mono")
+;; (set-face-attribute 'default nil :family "GNUTypewriter")
+
+;; (set-face-attribute 'variable-pitch nil :family "Noto Sans Bold")
 
 (defvar acme--monospace-height
  (face-attribute 'fixed-pitch :height nil 'default)
@@ -165,7 +170,7 @@
     
 (set-face-attribute 
     (custom-theme-set-faces 'acme
-                            `(variable-pitch ((t (:family ,(face-attribute 'variable-pitch :family) :height ,(acme--height 1)))))
+                            `(variable-pitch ((t (:family ,(face-attribute 'variable-pitch :family) :height ,(acme--height 1.25)))))
 
                             `(default ((t (:background ,bg :foreground ,fg))))
                             `(italic ((t (:foreground ,emph :slant italic))))
@@ -306,6 +311,15 @@
                             `(tldr-code-block  ((t ())))
                             `(tldr-command-argument ((t ())))
 
+                            ; Dired subtree
+                            `(dired-subtree-depth-1-face ((t (:backround ,bg))))
+                            `(dired-subtree-depth-2-face ((t (:backround ,bg))))
+                            `(dired-subtree-depth-3-face ((t (:backround ,bg))))
+                            `(dired-subtree-depth-4-face ((t (:backround ,bg))))
+                            `(dired-subtree-depth-5-face ((t (:backround ,bg))))
+                            `(dired-subtree-depth-6-face ((t (:backround ,bg))))
+
+                            ; Company
                             `(company-tooltip-selection        ((t (:background "#ddffdd"))))
                             `(company-tooltip-selection        ((t (:background "#cee7cf"))))
                             `(company-tooltip-common           ((t (:inherit fixed-pitch :foreground nil :underline nil :weight bold))))
