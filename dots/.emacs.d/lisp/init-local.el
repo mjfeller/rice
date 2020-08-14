@@ -27,12 +27,16 @@
         "https://nullprogram.com/feed/"
         ("https://notrelated.libsyn.com/rss" podcast)
         ("http://mfeller.io/rss.xml" personal)
+        ("https://planet.emacslife.com/atom.xml" emacs community)
         ,(mjf/yt-playlist-feed "PLkG-zhy1pVumXUC8e1vdfTciqZgNcpvdq")
         ,(mjf/yt-channel-feed "UCBa659QWEk1AI4Tg--mrJ2A") ; Tom Scott
+        ,(mjf/yt-channel-feed "UC0uTPqBCFIpZxlz_Lv1tk_g")
         ,(mjf/yt-channel-feed "UCdJdEguB1F1CiYe7OEi3SBg") ; Jon Tron
         ,(mjf/yt-channel-feed "UCEOXxzW2vU0P-0THehuIIeg") ; Captian D
         ,(mjf/yt-channel-feed "UCrTNhL_yO3tPTdQ5XgmmWjA") ; Red Letter Media
         ,(mjf/yt-channel-feed "UCgXiTWrFg05fTPfw1YLb5Ug") ; Triforce!
         ))
+
+(mjf/initialize-gmail)
 
 (provide 'init-local)
