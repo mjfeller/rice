@@ -13,7 +13,7 @@ packages future startups will be much faster.
 There are several subdirectories:
 
 'core'        holds primary configuration that I feel lost without.
-'lisp'        holds custom user lisp code. Useful for personal packages,
+'lisp'        holds custom user lisp code. Useful for site packages,
               personal information, etc.
 'modules'     holds package/language specific configuration that is
               useful when working with specific tasks or within specific
