@@ -65,14 +65,8 @@
 (defvar modules-dir (expand-file-name "modules" emacs-dir)
   "This directory houses all of the modules.")
 
-(defvar persistent-dir (expand-file-name "etc" emacs-dir)
-  "This directory houses files created by emacs packages")
-
 (defvar lisp-dir (expand-file-name "lisp" emacs-dir)
   "This directory houses user lisp and site lisp")
-
-(unless (file-exists-p persistent-dir)
-  (make-directory persistent-dir))
 
 (if (file-exists-p (concat emacs-dir "src"))
   (setq source-directory (concat emacs-dir "src")))
@@ -82,7 +76,7 @@
 (add-to-list 'load-path lisp-dir)
 
 ;; load the custom file
-(setq custom-file (concat persistent-dir "/custom.el"))
+(setq custom-file "~/.cache/emacs-custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
@@ -97,7 +91,7 @@
 
 (require 'core-bootstrap)
 (require 'core-ui)
-(when (eq system-type 'darwin) (require 'core-osx))
+(when (eq system-type 'darwin) (require 'core-macos))
 (require 'core-packages)
 (require 'core-defuns)
 (require 'core-paths)
@@ -108,19 +102,22 @@
 
 (message "Loading modules...")
 
-;; (require 'module-bbdb)
 (require 'module-c)
 (require 'module-company)
 (require 'module-docker)
 (require 'module-eldoc)
+(require 'module-elfeed)
 (require 'module-emacs-lisp)
+(require 'module-eshell)
 (require 'module-evil)
 (require 'module-git)
 (require 'module-go)
+(require 'module-kubernetes)
+(require 'module-ledger)
 (require 'module-multiple-cursors)
+(require 'module-notmuch)
 (require 'module-org)
 (require 'module-projectile)
-(require 'module-protobuf)
 (require 'module-python)
 (require 'module-restclient)
 (require 'module-yaml)
