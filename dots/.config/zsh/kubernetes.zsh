@@ -16,3 +16,7 @@ kcc() {
 authn() {
     istioctl authn -n qa5 tls-check $(pod recurly-app-web) | rg "HOST|qa5" --color=never
 }
+
+kn() {
+    alias kubectl="kubectl -n $1"
+}
