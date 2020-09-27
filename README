@@ -1,6 +1,6 @@
 Installation
 ============
 
-Install dot files::
+Install dot files
 
-  $ ./install
+	$ ./install [linux|macos]

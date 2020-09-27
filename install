@@ -1,32 +1,37 @@
-#!/bin/sh
-cd "$(dirname "$0")" || exit
+#!/bin/sh -e
+cd "$(dirname "$0")"
 
-shared() {
-    cp -rv dots/.config/git       $HOME/.config
-    cp -rv dots/.config/lf        $HOME/.config
-    cp -rv dots/.config/mpd       $HOME/.config
-    cp -rv dots/.config/ncmpcpp   $HOME/.config
-    cp -rv dots/.config/notmuch   $HOME/.config
-    cp -rv dots/.config/zsh       $HOME/.config
-    cp -rv dots/.config/aliasrc   $HOME/.config
-    cp -rv dots/.emacs.d          $HOME
-    cp -rv dots/.local            $HOME
+shared()
+{
+	cp -rv dots/.config/emacs     $HOME/.config
+	cp -rv dots/.config/git       $HOME/.config
+	cp -rv dots/.config/lf        $HOME/.config
+	cp -rv dots/.config/mpd       $HOME/.config
+	cp -rv dots/.config/ncmpcpp   $HOME/.config
+	cp -rv dots/.config/notmuch   $HOME/.config
+	cp -rv dots/.config/zsh       $HOME/.config
+	cp -rv dots/.config/aliasrc   $HOME/.config
+	cp -rv dots/.local            $HOME
 }
 
-linux() {
-    cp -rv dots/.config/compton       $HOME/.config
-    cp -rv dots/.config/dunst         $HOME/.config
-    cp -rv dots/.config/vis           $HOME/.config
-    cp -rv dots/.config/mimeapps.list $HOME/.config
-    cp -rv dots/.xinitrc  $HOME
-    cp -rv dots/.xprofile $HOME
-    cp -rv dots/.zprofile $HOME
-}
-
-macos() {
-    shared
-    cp -rv dots/.zshenv $HOME
-    cp -rv dots/.config/alacritty $HOME/.config
-}
-
-$@
+case $1 in
+	linux)
+		shared
+		cp -rv dots/.config/compton        $HOME/.config
+		cp -rv dots/.config/dunst          $HOME/.config
+		cp -rv dots/.config/vis            $HOME/.config
+		cp -rv dots/.config/mimeapps.list  $HOME/.config
+		cp -rv dots/.xinitrc               $HOME
+		cp -rv dots/.xprofile              $HOME
+		cp -rv dots/.zprofile              $HOME
+		;;
+	macos)
+    		shared
+    		cp -rv dots/.config/alacritty  $HOME/.config
+    		cp -rv dots/.zshenv            $HOME
+		;;
+	*)
+		echo "Usage: $0 [linux|macos]"
+		exit 2
+		;;
+esac
