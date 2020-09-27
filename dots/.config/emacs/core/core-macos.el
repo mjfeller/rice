@@ -66,7 +66,7 @@
 
 (defun mjf/center-window ()
   (interactive)
-  (call-process-shell-command "osascript ~/.emacs.d/scripts/Center-Window.scpt" nil 0))
+  (call-process-shell-command "osascript ~/.config/emacs/scripts/Center-Window.scpt" nil 0))
 
 (provide 'core-macos)
 
