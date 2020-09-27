@@ -9,7 +9,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 export PATH=$PATH:$HOME/.local/bin/
 export PATH=$PATH:/usr/local/bin
 
-export EDITOR=vi
+export EDITOR=vim
 export SHELL=zsh
 export TERMINAL=alacritty
 export PAGER=less
@@ -33,3 +33,5 @@ export LC_ALL=C
 
 export PASH_CLIP=pbcopy
 export PASH_TIMEOUT=off
+
+export GNUPGHOME=$HOME/.local/share/gnupg
