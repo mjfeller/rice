@@ -1,8 +1,6 @@
 (resize-small)
 (mjf/center-window)
 
-(load-file "~/.emacs.d/lisp/acme/acme-theme.el")
-
 (setq-default mode-line-format
       '((:propertize " " face mode-line-height)
         "%e"

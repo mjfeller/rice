@@ -22,12 +22,12 @@
 ;;; Code:
 
 (use-package yasnippet
-  :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+  :mode ("/\\.config/emacs/snippets/" . snippet-mode)
   :delight yas-minor-mode
   :demand
   :config
-  (progn (yas-load-directory "~/.emacs.d/snippets/")
-         (yas-global-mode 1)))
+  (yas-load-directory "~/.config/emacs/snippets/")
+  (yas-global-mode 1))
 
 (provide 'module-yasnippet)
 

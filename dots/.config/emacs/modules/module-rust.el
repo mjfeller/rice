@@ -21,51 +21,52 @@
 
 ;;; Code:
 
+(defun mjf/rust-prog-init ()
+  "if cargo is install get all depencies for emacs rust packages"
+  (interactive)
+  (if (not (eq (executable-find "cargo") nil))
+      (progn
+        (mapcar (lambda (pkg)
+                  (let ((cmd (concat "cargo install " pkg)))
+                    (call-process-shell-command cmd nil "*cargo-output*" t)))
+                '("racer")))
+    (message "cargo executable not found")))
+
+(defun mjf/setup-rust-mode-compile ()
+  "Customize compile command to run go build"
+  (if (not (string-match "cargo" compile-command))
+      (set (make-local-variable 'compile-command)
+           "cargo build")))
+
 (use-package rust-mode
-  :bind (:map rust-mode-map
-              ("C-c C-c"   . compile)
-              ("C-c <tab>" . rust-format-buffer))
+  :bind
+  (:map rust-mode-map
+        ("C-c C-c"   . compile)
+        ("C-c <tab>" . rust-format-buffer))
+
   :config
-  (progn (setq rust-format-on-save t)
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook 'mjf/setup-rust-mode-compile))
 
-         (defun rust-prog-init ()
-             "if cargo is install get all depencies for emacs rust packages"
-             (interactive)
-             (if (not (eq (executable-find "cargo") nil))
-                 (progn
-                   (mapcar (lambda (pkg)
-                             (let ((cmd (concat "cargo install " pkg)))
-                               (call-process-shell-command cmd nil "*cargo-output*" t)))
-                           '("racer")))
-               (message "cargo executable not found")))
-
-         (defun setup-rust-mode-compile ()
-           "Customize compile command to run go build"
-           (if (not (string-match "cargo" compile-command))
-               (set (make-local-variable 'compile-command)
-                    "cargo build")))
-
-         (add-hook 'rust-mode-hook 'setup-rust-mode-compile)))
-
-
-;; depends on racer install with cargo install racer
 (use-package racer
   :after (rust-mode)
   :delight racer-mode
-  :bind (:map rust-mode-map
-              ("TAB"   . company-indent-or-complete-common)
-              ("C-c d" . racer-describe))
+  :bind
+  (:map rust-mode-map
+        ("TAB"   . company-indent-or-complete-common)
+        ("C-c d" . racer-describe))
+
   :config
-  (progn (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
-         (setq racer-rust-src-path (concat (getenv "HOME") "/prog/rust/src")) ;; Rust source code PATH
+  (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+  (setq racer-rust-src-path (concat (getenv "HOME") "/prog/rust/src")) ;; Rust source code PATH
+  (setq company-tooltip-align-annotations t)
 
-         (add-hook 'rust-mode-hook #'racer-mode)
-         (add-hook 'racer-mode-hook #'eldoc-mode)
-         (add-hook 'racer-mode-hook #'company-mode)
-
-         (setq company-tooltip-align-annotations t)))
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode))
 
 (use-package flycheck-rust
+  :disable
   :after (flycheck-mode rust-mode)
   :config
   (progn (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))

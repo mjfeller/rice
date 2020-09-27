@@ -21,10 +21,43 @@
 
 ;;; Code:
 
+(defun mjf/ledger-report (name command)
+  `(,name ,(concat "%(binary) -f %(ledger-file) " command)))
+
+(defun mjf/ledger-reports (lst)
+  (mapcar (lambda (x)
+            (mjf/ledger-report (car x) (cadr x))) lst))
+
 (use-package ledger-mode
-  :mode "\\.ledger\\'")
+  :mode "\\.ledger\\'"
+  :config
+  (add-hook 'ledger-report-mode-hook 'disable-line-numbers)
+  (add-hook 'ledger-report-mode-hook 'evil-emacs-state)
+
+  (setq ledger-post-amount-alignment-column 62)
+  (setq ledger-report-auto-refresh nil)
+  (setq ledger-reports
+        (mjf/ledger-reports
+         '(("bal"              "bal -V")
+           ("reg"              "reg")
+           ("stats"            "stats")
+           ("payee"            "reg @%(payee)")
+           ("account"          "reg %(account)")
+           ("investments"      "bal ^Assets:Investments")
+           ("net worth"        "bal ^Assets ^Liabilities -V")
+           ("forecast"         "reg ^Assets ^Liabilities --forecast 'd<[2030]'")
+           ("creditcard"       "reg ^Liabilities:Credit --monthly")
+           ("budget"           "reg ^Expenses -p 'last month' --monthly --budget")
+           ("budget year"      "reg ^Expenses -p 'this year' --monthly --budget")
+           ("expenses"         "bal ^Expenses and not Tax -p 'this month'")
+           ("expenses monthly" "reg ^Expenses and not Tax -S T -p 'this year' --monthly --collapse")
+           ("expenses month"   "bal ^Expenses and not Tax --flat -S T -p 'last month'")
+           ("expenses year"    "bal ^Expenses and not Tax --flat -S T -p 'this year'")
+           ("average"          "bal ^Expenses -p 'this year' --monthly --average")
+           ("paystubs"         "print Income:Salary")))))
 
 (use-package flycheck-ledger
+  :disabled
   :after (flycheck-mode ledger-mode))
 
 (provide 'module-ledger)

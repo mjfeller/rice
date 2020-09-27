@@ -22,41 +22,27 @@
 ;;; Code:
 
 (use-package evil
+  :bind
+  (:map evil-normal-state-map ("C-u" . evil-scroll-up))
+  (:map evil-visual-state-map ("C-u" . evil-scroll-up))
+  (:map evil-insert-state-map ("C-u" . evil-scroll-up))
+
   :config
-  (progn (setq evil-mode-line-format '(before . mode-line-front-space))
-         (setq evil-echo-state nil)
+  (setq evil-mode-line-format '(before . mode-line-front-space))
+  (setq evil-echo-state nil)
+  (setq evil-esc-delay 0)
 
-         ;; prevent esc-key from translating to meta-key in terminal mode
-         (setq evil-esc-delay 0)
+  (evil-mode t))
 
-         (evil-mode 1)
-
-         (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-         (define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
-         (define-key evil-insert-state-map (kbd "C-u")
-           (lambda ()
-             (interactive)
-             (evil-delete (point-at-bol) (point))))))
-
-(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "o") 'neotree-quick-look)
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-(evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-(evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
-(evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
-
-;; evil-goggles will slightly delay vi operations and show a shadow on the text
-;; area being operated on. Extremely useful for pair programming
 (use-package evil-goggles
   :delight (evil-goggles-mode)
+
   :config
-  (progn (evil-goggles-mode t)
-         (setq evil-goggles-pulse t)
-         (setq evil-goggles-blocking-duration 0.100)
-         (setq evil-goggles-async-duration 0.300)))
+  (setq evil-goggles-pulse t)
+  (setq evil-goggles-blocking-duration 0.100)
+  (setq evil-goggles-async-duration 0.300)
+
+  (evil-goggles-mode t))
 
 (use-package evil-surround
   :config (global-evil-surround-mode t))
@@ -74,18 +60,20 @@
 (use-package evil-org
   :disabled
   :delight (evil-org-mode)
-  :config
-  (progn (add-hook 'org-mode-hook 'evil-org-mode)
 
-         (require 'evil-org-agenda)
-         (evil-org-agenda-set-keys)
-         (evil-org-set-key-theme '(textobjects
-                                   insert
-                                   navigation
-                                   additional
-                                   shift
-                                   todo
-                                   heading))))
+  :config
+  (require 'evil-org-agenda)
+
+  (add-hook 'org-mode-hook 'evil-org-mode)
+
+  (evil-org-agenda-set-keys)
+  (evil-org-set-key-theme '(textobjects
+                            insert
+                            navigation
+                            additional
+                            shift
+                            todo
+                            heading)))
 
 (provide 'module-evil)
 

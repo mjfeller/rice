@@ -26,9 +26,10 @@
 
 (require 'package)
 
+(setq package-user-dir "~/.cache/elpa")
 (setq package-archives
-      '(("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-        ("melpa"        . "http://melpa.milkbox.net/packages/")
+      '(("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa"        . "https://melpa.org/packages/")
         ("gnu"          . "http://elpa.gnu.org/packages/")
         ("org"          . "http://orgmode.org/elpa/")))
 
@@ -39,8 +40,7 @@
   (package-refresh-contents)
   (package-install 'use-package)
   (package-install 'diminish)
-  (package-install 'bind-key)
-  (package-install 'bind-chord))
+  (package-install 'bind-key))
 
 (require 'use-package)
 (setq use-package-always-ensure t)

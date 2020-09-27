@@ -22,24 +22,16 @@
 ;;; Code:
 
 (use-package company
-  :ensure t
-  :demand
   :delight (company-mode nil "company")
+  :demand
   :config
-  (progn (setq company-idle-delay 0)
-         (setq company-tooltip-limit 10)
-         (setq company-echo-delay 0)
-         (setq company-tooltip-flip-when-above t)
-         (setq company-begin-commands '(self-insert-command))
+  (setq company-idle-delay 0)
+  (setq company-tooltip-limit 10)
+  (setq company-echo-delay 0)
+  (setq company-tooltip-flip-when-above t)
+  (setq company-begin-commands '(self-insert-command))
 
-         ;; Face Configuration
-         (set-face-attribute 'company-tooltip-selection nil :background "#ddffdd")
-         (set-face-attribute 'company-tooltip-selection nil :background "#cee7cf")
-         (set-face-attribute 'company-tooltip-common nil :inherit 'fixed-pitch :foreground nil :underline nil :weight 'bold)
-         (set-face-attribute 'company-scrollbar-fg nil :background "#388E3C")
-         (set-face-attribute 'company-preview-common nil :underline nil)
-         (set-face-attribute 'company-tooltip-common nil :underline nil)
-         (set-face-attribute 'company-tooltip-common-selection nil :underline nil)))
+  (global-company-mode))
 
 (provide 'module-company)
 
