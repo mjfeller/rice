@@ -37,3 +37,5 @@ export PASH_TIMEOUT=off
 export GNUPGHOME=$HOME/.local/share/gnupg
 
 export NOTMUCH_CONFIG=$HOME/.config/notmuch/config
+
+export BOTO_CONFIG=$HOME/.config/gcloud/boto
