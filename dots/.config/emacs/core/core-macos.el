@@ -38,7 +38,10 @@
 
 (use-package exec-path-from-shell
   :demand
-  :config (exec-path-from-shell-initialize))
+  :config
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GNUPGHOME")
+  (exec-path-from-shell-copy-env "NOTMUCH_CONFIG"))
 
 (defun finder ()
   "Opens file directory in Finder."

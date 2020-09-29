@@ -36,5 +36,8 @@
         ))
 
 (mjf/initialize-gmail)
+(setq user-mail-address "mark@getsunday.com")
+(setq mml-secure-smime-sign-with-sender "mark@getsunday.com")
+(setq message-signature-file "~/.local/share/emacs/signature")
 
 (provide 'init-local)

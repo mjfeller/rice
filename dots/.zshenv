@@ -35,3 +35,5 @@ export PASH_CLIP=pbcopy
 export PASH_TIMEOUT=off
 
 export GNUPGHOME=$HOME/.local/share/gnupg
+
+export NOTMUCH_CONFIG=$HOME/.config/notmuch/config

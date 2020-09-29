@@ -40,7 +40,7 @@
   "Tag mail at point as deleted. This operation will not delete
 the mail, but tag it for later deletion."
   (interactive)
-  (notmuch-search-tag '("+deleted" "-inbox" "-unread"))
+  (notmuch-search-tag '("+deleted" "-unread"))
   (next-line))
 
 (defun mjf/delete-tagged-mail ()
@@ -53,8 +53,8 @@ the mail, but tag it for later deletion."
   "Fetch mail using getmail"
   (interactive)
   (message "Fetching mail...")
-  (shell-command "getmail")
-  (notmuch-hello-update))
+  (shell-command "getmail --getmaildir=$HOME/.config/getmail")
+  (notmuch-poll-and-refresh-this-buffer))
 
 (use-package notmuch
   :bind
