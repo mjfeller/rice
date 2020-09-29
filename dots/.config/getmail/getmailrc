@@ -1,0 +1,10 @@
+[retriever]
+type = SimplePOP3SSLRetriever
+server = pop.gmail.com
+username = mark@getsunday.com
+port = 995
+password_command = ("pash", "show", "gmail")
+
+[destination]
+type = Maildir
+path = ~/Documents/mail/
