@@ -70,7 +70,9 @@ the mail, but tag it for later deletion."
 
   :config
   (add-hook 'notmuch-hello-mode-hook 'disable-line-numbers)
+  (add-hook 'notmuch-message-mode-hook 'disable-line-numbers)
   (add-hook 'notmuch-search-mode-hook 'disable-line-numbers)
+  (add-hook 'notmuch-show-mode-hook 'disable-line-numbers)
   (add-hook 'notmuch-tree-mode-hook 'disable-line-numbers)
 
   (setq notmuch-saved-searches
