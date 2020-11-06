@@ -18,8 +18,9 @@ git_prompt() {
     [ -z "$ref" ] || echo "%F{cyan}$ref%f "
 }
 kube_prompt() {
-    ctx=$(kubectl config current-context 2> /dev/null)
-    [ -z "$ctx" ] || echo "%F{green}$ctx%f "
+    ctx=$([ -z "$KUBECTX" ] && kubectl config current-context 2> /dev/null || echo "$KUBECTX" )
+    [ -z "$ctx" ] || echo -n "%F{green}$ctx%f "
+    [ -z "$KUBENS" ] || echo -n "%F{blue}$KUBENS%f "
 }
 PROMPT='%F{241}λ %2~%f $(kube_prompt)$(git_prompt)%B%F{241}»%b%f '
 

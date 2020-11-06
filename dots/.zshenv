@@ -14,6 +14,7 @@ export SHELL=zsh
 export TERMINAL=alacritty
 export PAGER=less
 
+
 export MANWIDTH=80
 export LESSHISTFILE=-
 export HISTFILE=$XDG_CACHE_HOME/bash_history

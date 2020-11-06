@@ -16,6 +16,7 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
+
 ;;; Commentary:
 
 ;; move all the misc files created by emacs into a seperate directory to
