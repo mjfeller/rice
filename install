@@ -1,5 +1,6 @@
 #!/bin/sh -e
-cd "$(dirname "$0")"
+
+rice_dir=$HOME/.config/rice
 
 copy()
 {
@@ -43,6 +44,19 @@ macos()
 	copy dots/.zshenv            $HOME
 }
 
+if [ -d "$rice_dir" ]; then
+	cd "$rice_dir"
+	git pull --ff-only
+else
+	mkdir -p ~/.config
+	git clone https://github.com/mjfeller/rice "$rice_dir"
+fi
+
+if [ ! -d ~/.ssh ]; then
+	mkdir ~/.ssh
+fi
+
+cd "$rice_dir"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	shared; linux
 elif [[ "$OSTYPE" == "darwin"* ]]; then
