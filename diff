@@ -1,0 +1,16 @@
+#!/bin/sh -x
+
+diff    dots/.ssh/config         $HOME/.ssh/config
+diff    dots/.zshenv             $HOME/.zshenv
+diff -r dots/.config/aliasrc     $HOME/.config/aliasrc
+diff -r dots/.config/emacs       $HOME/.config/emacs
+diff -r dots/.config/git         $HOME/.config/git
+diff -r dots/.config/lf          $HOME/.config/lf
+diff -r dots/.config/mpd         $HOME/.config/mpd
+diff -r dots/.config/ncmpcpp     $HOME/.config/ncmpcpp
+diff -r dots/.config/notmuch     $HOME/.config/notmuch
+diff -r dots/.config/offlineimap $HOME/.config/offlineimap
+diff -r dots/.config/zsh         $HOME/.config/zsh
+diff -r dots/.local/bin          $HOME/.local/bin
+diff -r dots/.local/share/emacs  $HOME/.local/share/emacs
+diff -r dots/.local/share/gnupg  $HOME/.local/share/gnupg
