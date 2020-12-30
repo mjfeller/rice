@@ -1,0 +1,21 @@
+[general]
+accounts = MfellerIo
+metadata = $XDG_CONFIG_HOME/offlineimap/offlineimap
+pythonfile = $XDG_CONFIG_HOME/offlineimap/offlineimap.py
+
+[Account MfellerIo]
+localrepository = MfellerLocal
+remoterepository = MfellerRemote
+
+[Repository MfellerRemote]
+type = IMAP
+remotehost = mail.mfeller.io
+remoteuser = mark
+remotepasseval = get_pass("bsd-mark")
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+ssl = yes
+
+[Repository MfellerLocal]
+type = Maildir
+localfolders = ~/Documents/mail
+restoreatime = no
