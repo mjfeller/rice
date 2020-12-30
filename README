@@ -4,3 +4,7 @@ Installation
 Install dot files
 
 	$ ./install
+
+Or for the brave
+
+	$ curl -L https://mfeller.io/movein | sh
