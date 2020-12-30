@@ -3,4 +3,4 @@ Installation
 
 Install dot files
 
-	$ ./install [linux|macos]
+	$ ./install

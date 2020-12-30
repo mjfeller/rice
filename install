@@ -9,6 +9,7 @@ copy()
 
 shared()
 {
+	# Dotfiles used on all operating systems
 	copy dots/.config/emacs       $HOME/.config
 	copy dots/.config/git         $HOME/.config
 	copy dots/.config/lf          $HOME/.config
@@ -23,24 +24,29 @@ shared()
 	copy dots/.local/share/gnupg  $HOME/.local/share
 }
 
-case $1 in
-	linux)
-		shared
-		copy dots/.config/compton        $HOME/.config
-		copy dots/.config/dunst          $HOME/.config
-		copy dots/.config/vis            $HOME/.config
-		copy dots/.config/mimeapps.list  $HOME/.config
-		copy dots/.xinitrc               $HOME
-		copy dots/.xprofile              $HOME
-		copy dots/.zprofile              $HOME
-		;;
-	macos)
-    		shared
-    		copy dots/.config/alacritty  $HOME/.config
-    		copy dots/.zshenv            $HOME
-		;;
-	*)
-		echo "Usage: $0 [linux|macos]"
-		exit 2
-		;;
-esac
+linux()
+{
+	# Linux specific dotfiles
+	copy dots/.config/compton        $HOME/.config
+	copy dots/.config/dunst          $HOME/.config
+	copy dots/.config/vis            $HOME/.config
+	copy dots/.config/mimeapps.list  $HOME/.config
+	copy dots/.xinitrc               $HOME
+	copy dots/.xprofile              $HOME
+	copy dots/.zprofile              $HOME
+}
+
+macos()
+{
+	# macOS specific dotfiles
+	copy dots/.config/alacritty  $HOME/.config
+	copy dots/.zshenv            $HOME
+}
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	shared; linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	shared; macos
+else
+	echo "Usage: $0"; exit 2
+fi
