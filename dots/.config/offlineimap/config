@@ -17,5 +17,5 @@ ssl = yes
 
 [Repository MfellerLocal]
 type = Maildir
-localfolders = ~/Documents/mail
+localfolders = ~/.local/mail
 restoreatime = no
