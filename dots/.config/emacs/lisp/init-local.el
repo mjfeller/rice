@@ -35,9 +35,9 @@
         ,(mjf/yt-channel-feed "UCgXiTWrFg05fTPfw1YLb5Ug") ; Triforce!
         ))
 
-(mjf/initialize-gmail)
-(setq user-mail-address "mark@getsunday.com")
-(setq mml-secure-smime-sign-with-sender "mark@getsunday.com")
+(mjf/initialize-personal-email)
+(setq user-mail-address "mark@mfeller.io")
+(setq mml-secure-smime-sign-with-sender "mark@mfeller.io")
 (setq message-signature-file "~/.local/share/emacs/signature")
 
 (provide 'init-local)

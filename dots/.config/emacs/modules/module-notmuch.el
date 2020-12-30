@@ -36,6 +36,16 @@
         smtpmail-stream-type         'ssl
         smtpmail-smtp-service        465))
 
+(defun mjf/initialize-personal-email ()
+  "Configure smtpmail to use personal mail server"
+  (setq message-send-mail-function   'smtpmail-send-it  ; message-mode
+        send-mail-function           'smtpmail-send-it  ; mail-mode
+        smtpmail-default-smtp-server "mail.mfeller.io"
+        smtpmail-smtp-server         "mail.mfeller.io"
+        smtpmail-local-domain        "mfeller.io"
+        smtpmail-stream-type         'ssl
+        smtpmail-smtp-service        465))
+
 (defun mjf/tag-deleted ()
   "Tag mail at point as deleted. This operation will not delete
 the mail, but tag it for later deletion."

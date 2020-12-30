@@ -1,7 +1,7 @@
 [user]
     name = Mark Feller
-    email = mark@getsunday.com
-    signingkey = 95189B138B01C10DC955396A5AB4584E9FF44D46
+    email = mark@mfeller.io
+    signingkey = 8D557E89BE40D1A4B63C6F09B858CCCC0434CA15
 
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
