@@ -15,6 +15,7 @@ shared()
 	copy dots/.config/mpd         $HOME/.config
 	copy dots/.config/ncmpcpp     $HOME/.config
 	copy dots/.config/notmuch     $HOME/.config
+	copy dots/.config/offlineimap $HOME/.config
 	copy dots/.config/zsh         $HOME/.config
 	copy dots/.config/aliasrc     $HOME/.config
 	copy dots/.local/bin          $HOME/.local
