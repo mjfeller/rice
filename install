@@ -44,6 +44,19 @@ macos()
 	copy dots/.zshenv            $HOME
 }
 
+bootstrap_linux()
+{
+	return
+}
+
+bootstrap_macos()
+{
+	# Install macOS packages
+	command -v brew >/dev/null || bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install $(awk '$1 == "B" { print $2 }' pkgs/macos) || true
+	brew upgrade $(awk '$1 == "B" { print $2 }' pkgs/macos) || true
+}
+
 if [ -d "$rice_dir" ]; then
 	cd "$rice_dir"
 	git pull --ff-only
@@ -57,10 +70,8 @@ if [ ! -d ~/.ssh ]; then
 fi
 
 cd "$rice_dir"
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	shared; linux
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	shared; macos
-else
-	echo "Usage: $0"; exit 2
-fi
+case "$(uname -s)" in
+    Linux*)  shared; linux; [ "$1" = "-d" ] || bootstrap_linux ;;
+    Darwin*) shared; macos; [ "$1" = "-d" ] || bootstrap_macos ;;
+    *)       echo "Usage: $0 [-d]"; exit 1 ;;
+esac
