@@ -9,6 +9,8 @@ alias rm="rm -iv"
 alias q="exit"
 alias vi=vim
 
+alias doas="sudo"
+
 alias weather="curl wttr.in/\~Boulder+Colorado"
 
 # Youtube

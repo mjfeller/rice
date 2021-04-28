@@ -3,7 +3,8 @@
 # This file runs when a DM logs you into a grapgical session.
 # If you use startx/xinit this file will also be sourced.
 
+xrdb $HOME/.config/x11/xresources &
 setbg &
 dunst &
 sxhkd &
-compton --config ~/.config/compton/compton.conf &
+#compton --config ~/.config/compton/compton.conf &

@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# xinitrc runs automatically when you run startx.
+
+[ -f ~/.config/x11/xprofile ] && . ~/.config/x11/xprofile
+
+exec dwm
