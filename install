@@ -75,5 +75,3 @@ case "$(uname -s)" in
     Darwin*) shared; macos; [ "$1" = "-d" ] || bootstrap_macos ;;
     *)       echo "Usage: $0 [-d]"; exit 1 ;;
 esac
-
-echo "test"
