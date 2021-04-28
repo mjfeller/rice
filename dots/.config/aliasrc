@@ -15,3 +15,5 @@ alias weather="curl wttr.in/\~Boulder+Colorado"
 alias yt="youtube-dl"
 alias yta='youtube-dl --extract-audio --audio-quality 0 --audio-format flac --output "%(title)s.%(ext)s"'
 alias ytad='youtube-dl --extract-audio --audio-quality 0 --audio-format flac --output "%(title)s [%(upload_date)s].%(ext)s"'
+
+alias fp='pash c $(pash l | fzf)'
