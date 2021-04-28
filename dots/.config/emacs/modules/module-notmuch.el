@@ -53,6 +53,13 @@ the mail, but tag it for later deletion."
   (notmuch-search-tag '("+deleted" "-unread"))
   (next-line))
 
+(defun mjf/tree-tag-deleted ()
+  "Tag mail at point as deleted. This operation will not delete
+the mail, but tag it for later deletion."
+  (interactive)
+  (notmuch-tree-tag '("+deleted" "-unread"))
+  (next-line))
+
 (defun mjf/delete-tagged-mail ()
   "Delete mail that is tagged with the deleted tag"
   (interactive)
@@ -66,6 +73,13 @@ the mail, but tag it for later deletion."
   (shell-command "getmail --getmaildir=$HOME/.config/getmail")
   (notmuch-poll-and-refresh-this-buffer))
 
+(defun mjf/offlineimap ()
+  "Fetch mail using getmail"
+  (interactive)
+  (message "Fetching mail...")
+  (shell-command "offlineimap")
+  (notmuch-poll-and-refresh-this-buffer))
+
 (use-package notmuch
   :bind
   (:map notmuch-search-mode-map
@@ -73,10 +87,10 @@ the mail, but tag it for later deletion."
         ("D" . mjf/delete-tagged-mail)
         ("/" . notmuch-search))
   (:map notmuch-tree-mode-map
-        ("d" . mjf/tag-deleted)
+        ("d" . mjf/tree-tag-deleted)
         ("D" . mjf/delete-tagged-mail))
   (:map notmuch-hello-mode-map
-        ("r" . mjf/getmail))
+        ("r" . mjf/offlineimap))
 
   :config
   (add-hook 'notmuch-hello-mode-hook 'disable-line-numbers)
@@ -86,12 +100,16 @@ the mail, but tag it for later deletion."
   (add-hook 'notmuch-tree-mode-hook 'disable-line-numbers)
 
   (setq notmuch-saved-searches
-        '((:name "inbox"    :query "tag:inbox"   :key "i")
-          (:name "unread"   :query "tag:unread"  :key "u")
-          (:name "all"      :query "*"           :key "a")
-          (:name "deleted"  :query "tag:deleted")
-          (:name "sent"     :query "tag:sent"    :key "t")
-          (:name "drafts"   :query "tag:draft"   :key "d"))))
+        '((:name "inbox"        :query "tag:inbox"   :key "i")
+          (:name "unread"       :query "tag:unread"  :key "u")
+          (:name "all"          :query "*"           :key "a")
+          (:name "deleted"      :query "tag:deleted")
+          (:name "sent"         :query "tag:sent"    :key "t")
+          (:name "drafts"       :query "tag:draft"   :key "d")
+          (:name "work"         :query "mark@getsunday.com tag:unread" :key "w" :search-type tree)
+          (:name "OpenBSD tech" :query "tech@openbsd.org tag:unread" :search-type tree)
+          (:name "OpenBSD misc" :query "misc@openbsd.org tag:unread" :search-type tree)
+          )))
 
 (provide 'module-notmuch)
 

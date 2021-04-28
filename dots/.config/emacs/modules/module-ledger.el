@@ -53,7 +53,7 @@
            ("expenses monthly" "reg ^Expenses and not Tax -S T -p 'this year' --monthly --collapse")
            ("expenses month"   "bal ^Expenses and not Tax --flat -S T -p 'last month'")
            ("expenses year"    "bal ^Expenses and not Tax --flat -S T -p 'this year'")
-           ("average"          "bal ^Expenses -p 'this year' --monthly --average")
+           ("average"          "reg -p 'this year' --monthly --average not Tax and ^Expenses")
            ("paystubs"         "print Income:Salary")))))
 
 (use-package flycheck-ledger
