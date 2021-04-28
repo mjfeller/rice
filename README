@@ -7,4 +7,4 @@ Install dot files
 
 Or for the brave
 
-	$ curl -L https://mfeller.io/movein | sh
+	$ curl -sL https://mfeller.io/movein | sh
