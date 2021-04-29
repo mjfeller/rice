@@ -4,7 +4,7 @@ rice_dir=$HOME/.config/rice
 
 copy()
 {
-	printf "%-25s %s\n" "$1" "$2/$(basename $1)"
+	printf "%-30s %s\n" "$1" "$2/$(basename $1)"
 	cp -r "$1" "$2"
 }
 
@@ -30,11 +30,9 @@ linux()
 	# Linux specific dotfiles
 	copy dots/.config/compton        $HOME/.config
 	copy dots/.config/dunst          $HOME/.config
-	copy dots/.config/vis            $HOME/.config
 	copy dots/.config/mimeapps.list  $HOME/.config
-	copy dots/.xinitrc               $HOME
-	copy dots/.xprofile              $HOME
-	copy dots/.zprofile              $HOME
+	copy dots/.config/vis            $HOME/.config
+	copy dots/.config/x11            $HOME/.config
 }
 
 macos()
