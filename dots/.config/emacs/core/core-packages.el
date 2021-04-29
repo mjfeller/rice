@@ -216,30 +216,34 @@
   (setq rg-executable "/usr/local/bin/rg"))
 
 ;; window management
+(if (eq system-type 'darwin)
+    (setq window-management-prefix "H")
+  (setq window-management-prefix "S"))
+
 (bind-keys
- ("H-e" . windmove-up)
- ("H-d" . windmove-down)
- ("H-f" . windmove-right)
- ("H-s" . windmove-left)
+ ((concat window-management-prefix "-e") . windmove-up)
+ ((concat window-management-prefix "-d") . windmove-down)
+ ((concat window-management-prefix "-f") . windmove-right)
+ ((concat window-management-prefix "-s") . windmove-left)
 
  ;; Window Resizing
- ("H-E" . enlarge-window)
- ("H-D" . shrink-window)
- ("H-F" . enlarge-window-horizontally)
- ("H-S" . shrink-window-horizontally)
+ ((concat window-management-prefix "-E") . enlarge-window)
+ ((concat window-management-prefix "-D") . shrink-window)
+ ((concat window-management-prefix "-F") . enlarge-window-horizontally)
+ ((concat window-management-prefix "-S") . shrink-window-horizontally)
 
  ;; Window Splitting
- ("H-v" . split-window-vertically)
- ("H-r" . split-window-horizontally)
- ("H-w" . delete-window)
- ("H-q" . delete-other-windows)
+ ((concat window-management-prefix "-v") . split-window-vertically)
+ ((concat window-management-prefix "-r") . split-window-horizontally)
+ ((concat window-management-prefix "-w") . delete-window)
+ ((concat window-management-prefix "-q") . delete-other-windows)
 
  ;; Misc Window Commands
- ("H-a" . balance-windows)
- ("H-t" . toggle-window-split)
- ("H-<return>". toggle-fullscreen)
+ ((concat window-management-prefix "-a") . balance-windows)
+ ((concat window-management-prefix "-t") . toggle-window-split)
+ ((concat window-management-prefix "-<return>") . toggle-fullscreen)
 
- ("H-c" . mjf/center-window))
+ ((concat window-management-prefix "-c") . mjf/center-window))
 
 (delight 'subword-mode "" "subword")
 (delight 'undo-tree-mode "" "undo-tree")
