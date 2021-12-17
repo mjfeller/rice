@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Select a password to copy
+
+pash copy $(pash list | sort | dmenu)
