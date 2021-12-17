@@ -22,7 +22,7 @@ kube_prompt() {
     [ -z "$ctx" ] || echo -n "%F{green}$ctx%f "
     [ -z "$KUBENS" ] || echo -n "%F{blue}$KUBENS%f "
 }
-PROMPT='%F{241}λ %2~%f $(kube_prompt)$(git_prompt)%B%F{241}»%b%f '
+PROMPT='%F{241}%2~%f $(kube_prompt)$(git_prompt)%B%F{241}$%b%f '
 
 toggle_kube_promt() {
 	PROMPT='%F{241}λ %2~%f $(git_prompt)%B%F{241}»%b%f '

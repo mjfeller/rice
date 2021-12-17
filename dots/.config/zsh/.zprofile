@@ -32,7 +32,7 @@ export LS_COLORS="rs=0:di=36;36:ln=36;51:mh=00:pi=40;36;11:so=36;13:do=36;5:bd=4
 
 export LC_ALL=C
 
-export PASH_CLIP=xclip
+export PASH_CLIP='xclip -i -selection clipboard'
 export PASH_TIMEOUT=off
 
 export GNUPGHOME=$HOME/.local/share/gnupg
