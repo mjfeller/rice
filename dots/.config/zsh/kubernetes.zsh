@@ -29,10 +29,33 @@ kn() {
     [ -z "$1" ] && unset KUBENS || export KUBENS=$1
 }
 
+kge() {
+    # Grab a list of all active generic environments
+    kubectl --context=dev get ns -l sunday-env=generic --show-labels=true
+}
+
 kubectl() {
     # Override the kubectl command to automatically apply flags based on
     # environment variables.
     command kubectl \
+            $([ -z "$KUBENS" ] || printf "--namespace=$KUBENS") \
+            $([ -z "$KUBECTX" ] || printf "--context=$KUBECTX") \
+            $@
+}
+
+helm() {
+    # Override the helm command to automatically apply flags based on
+    # environment variables.
+    command helm \
+            $([ -z "$KUBENS" ] || printf "--namespace=$KUBENS") \
+            $([ -z "$KUBECTX" ] || printf "--kube-context=$KUBECTX") \
+            $@
+}
+
+istioctl() {
+    # Override the istioctl command to automatically apply flags based on
+    # environment variables.
+    command istioctl \
             $([ -z "$KUBENS" ] || printf "--namespace=$KUBENS") \
             $([ -z "$KUBECTX" ] || printf "--context=$KUBECTX") \
             $@
