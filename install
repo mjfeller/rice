@@ -14,10 +14,6 @@ shared()
 	copy dots/.config/emacs       $HOME/.config
 	copy dots/.config/git         $HOME/.config
 	copy dots/.config/lf          $HOME/.config
-	copy dots/.config/mpd         $HOME/.config
-	copy dots/.config/ncmpcpp     $HOME/.config
-	copy dots/.config/notmuch     $HOME/.config
-	copy dots/.config/offlineimap $HOME/.config
 	copy dots/.config/zsh         $HOME/.config
 	copy dots/.config/aliasrc     $HOME/.config
 	copy dots/.local/bin          $HOME/.local
@@ -29,6 +25,10 @@ linux()
 	# Linux specific dotfiles
 	copy dots/.config/compton            $HOME/.config
 	copy dots/.config/dunst              $HOME/.config
+	copy dots/.config/mpd                $HOME/.config
+	copy dots/.config/ncmpcpp            $HOME/.config
+	copy dots/.config/notmuch            $HOME/.config
+	copy dots/.config/offlineimap        $HOME/.config
 	copy dots/.config/mimeapps.list      $HOME/.config
 	copy dots/.config/vis                $HOME/.config
 	copy dots/.config/x11                $HOME/.config
@@ -41,6 +41,11 @@ macos()
 	copy dots/.config/alacritty          $HOME/.config
 	copy dots/.zshenv                    $HOME
 	copy dots/.local/share/gnupg/*.macos $HOME/.local/share/gnupg
+}
+
+openbsd()
+{
+	return
 }
 
 if [ -d "$rice_dir" ]; then
@@ -57,7 +62,8 @@ fi
 
 cd "$rice_dir"
 case "$(uname -s)" in
-    Linux*)  shared; linux ;;
-    Darwin*) shared; macos ;;
-    *)       echo "Usage: $0 [-d]"; exit 1 ;;
+	Linux*)   shared; linux ;;
+	Darwin*)  shared; macos ;;
+	OpenBSD*) shared; openbsd ;;
+	*)        echo "Could not detect OS"; exit 1 ;;
 esac
