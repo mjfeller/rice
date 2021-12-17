@@ -22,37 +22,25 @@ shared()
 	copy dots/.config/aliasrc     $HOME/.config
 	copy dots/.local/bin          $HOME/.local
 	copy dots/.local/share/emacs  $HOME/.local/share
-	copy dots/.local/share/gnupg  $HOME/.local/share
 }
 
 linux()
 {
 	# Linux specific dotfiles
-	copy dots/.config/compton        $HOME/.config
-	copy dots/.config/dunst          $HOME/.config
-	copy dots/.config/mimeapps.list  $HOME/.config
-	copy dots/.config/vis            $HOME/.config
-	copy dots/.config/x11            $HOME/.config
+	copy dots/.config/compton            $HOME/.config
+	copy dots/.config/dunst              $HOME/.config
+	copy dots/.config/mimeapps.list      $HOME/.config
+	copy dots/.config/vis                $HOME/.config
+	copy dots/.config/x11                $HOME/.config
+	copy dots/.local/share/gnupg/*.linux $HOME/.local/share/gnupg
 }
 
 macos()
 {
 	# macOS specific dotfiles
-	copy dots/.config/alacritty  $HOME/.config
-	copy dots/.zshenv            $HOME
-}
-
-bootstrap_linux()
-{
-	return
-}
-
-bootstrap_macos()
-{
-	# Install macOS packages
-	command -v brew >/dev/null || bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install $(awk '$1 == "B" { print $2 }' pkgs/macos) || true
-	brew upgrade $(awk '$1 == "B" { print $2 }' pkgs/macos) || true
+	copy dots/.config/alacritty          $HOME/.config
+	copy dots/.zshenv                    $HOME
+	copy dots/.local/share/gnupg/*.macos $HOME/.local/share/gnupg
 }
 
 if [ -d "$rice_dir" ]; then
@@ -69,7 +57,7 @@ fi
 
 cd "$rice_dir"
 case "$(uname -s)" in
-    Linux*)  shared; linux; [ "$1" = "-d" ] || bootstrap_linux ;;
-    Darwin*) shared; macos; [ "$1" = "-d" ] || bootstrap_macos ;;
+    Linux*)  shared; linux ;;
+    Darwin*) shared; macos ;;
     *)       echo "Usage: $0 [-d]"; exit 1 ;;
 esac

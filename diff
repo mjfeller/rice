@@ -1,16 +1,35 @@
-#!/bin/sh -x
+#!/bin/sh -e
 
-diff    dots/.ssh/config         $HOME/.ssh/config
-diff    dots/.zshenv             $HOME/.zshenv
-diff -r dots/.config/aliasrc     $HOME/.config/aliasrc
-diff -r dots/.config/emacs       $HOME/.config/emacs
-diff -r dots/.config/git         $HOME/.config/git
-diff -r dots/.config/lf          $HOME/.config/lf
-diff -r dots/.config/mpd         $HOME/.config/mpd
-diff -r dots/.config/ncmpcpp     $HOME/.config/ncmpcpp
-diff -r dots/.config/notmuch     $HOME/.config/notmuch
-diff -r dots/.config/offlineimap $HOME/.config/offlineimap
-diff -r dots/.config/zsh         $HOME/.config/zsh
-diff -r dots/.local/bin          $HOME/.local/bin
-diff -r dots/.local/share/emacs  $HOME/.local/share/emacs
-diff -r dots/.local/share/gnupg  $HOME/.local/share/gnupg
+dff() {
+    diff $@ | sed '/Only in/d'
+}
+
+linux() {
+    dff -r dots/.config/mpd         $HOME/.config/mpd
+    dff -r dots/.config/ncmpcpp     $HOME/.config/ncmpcpp
+    dff -r dots/.config/notmuch     $HOME/.config/notmuch
+    dff -r dots/.config/offlineimap $HOME/.config/offlineimap
+    dff    dots/.local/share/gnupg/gpg-agent.conf.linux $HOME/.local/share/gnupg/gpg-agent.conf
+}
+
+macos() {
+    dff    dots/.zshenv             $HOME/.zshenv
+    dff    dots/.local/share/gnupg/gpg-agent.conf.macos $HOME/.local/share/gnupg/gpg-agent.conf
+}
+
+shared() {
+    dff    dots/.ssh/config         $HOME/.ssh/config
+    dff -r dots/.config/aliasrc     $HOME/.config/aliasrc
+    dff -r dots/.config/emacs       $HOME/.config/emacs
+    dff -r dots/.config/git         $HOME/.config/git
+    dff -r dots/.config/lf          $HOME/.config/lf
+    dff -r dots/.config/zsh         $HOME/.config/zsh
+    dff -r dots/.local/bin          $HOME/.local/bin
+    dff -r dots/.local/share/emacs  $HOME/.local/share/emacs
+}
+
+case "$(uname -s)" in
+    Linux*)  shared; linux ;;
+    Darwin*) shared; macos ;;
+    *)       echo "Usage: $0 [-d]"; exit 1 ;;
+esac
