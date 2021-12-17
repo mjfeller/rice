@@ -250,6 +250,12 @@
 
 (add-hook 'woman-mode-hook 'disable-line-numbers)
 (add-hook 'Man-mode-hook 'disable-line-numbers)
+(add-hook 'compilation-mode-hook 'disable-line-numbers)
+
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (ansi-color-apply-on-region compilation-filter-start (point)))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 (provide 'core-packages)
 

@@ -48,7 +48,18 @@
 
   ;; Enable hideshow minor mode in python for folding and unfolding
   (add-hook 'python-mode-hook 'hs-minor-mode)
-  (add-hook 'python-mode-hook 'subword-mode))
+  (add-hook 'python-mode-hook 'subword-mode)
+
+  (add-hook
+   'python-mode-hook
+   (lambda ()
+     (setq pretty-symbols-alist '())
+     (mapc (lambda (pair) (push pair prettify-symbols-alist))
+           '(;; Syntax
+             ("lambda" . ?λ)
+             (">="     . ?≥)
+             ("<="     . ?≤)
+             ("->"     . ?➜))))))
 
 (use-package elpy
   :bind
