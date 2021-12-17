@@ -15,7 +15,7 @@ sread() {
 
 [ -t 0 ] && sread pass "Enter password" || read -r pass
 
-sha_pass=$(echo -n $pass | sha1sum | cut -d' ' -f1 |  tr '[a-z]' '[A-Z]')
+sha_pass=$(echo $pass | sha1sum | cut -d' ' -f1 |  tr '[a-z]' '[A-Z]')
 sha_head=${sha_pass:0:5}
 sha_tail=${sha_pass:5}
 

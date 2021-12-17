@@ -18,7 +18,6 @@ macos() {
 }
 
 shared() {
-    dff    dots/.ssh/config         $HOME/.ssh/config
     dff -r dots/.config/aliasrc     $HOME/.config/aliasrc
     dff -r dots/.config/emacs       $HOME/.config/emacs
     dff -r dots/.config/git         $HOME/.config/git
