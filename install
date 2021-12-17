@@ -33,7 +33,7 @@ linux()
 	copy dots/.config/mimeapps.list      $HOME/.config
 	copy dots/.config/vis                $HOME/.config
 	copy dots/.config/x11                $HOME/.config
-	copy dots/.local/share/gnupg/*.linux $HOME/.local/share/gnupg
+	copy dots/.local/share/gnupg/gpg-agent.conf.linux $HOME/.local/share/gnupg/gpg-agent.conf
 }
 
 macos()
@@ -42,7 +42,7 @@ macos()
 	copy dots/.config/alacritty          $HOME/.config
 	copy dots/.config/git/config.macos   $HOME/.config/git/config
 	copy dots/.zshenv                    $HOME
-	copy dots/.local/share/gnupg/*.macos $HOME/.local/share/gnupg
+	copy dots/.local/share/gnupg/gpg-agent.conf.macos $HOME/.local/share/gnupg/gpg-agent.conf
 }
 
 openbsd()
