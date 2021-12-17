@@ -1,0 +1,25 @@
+[user]
+    name = Mark Feller
+    email = mark@getsunday.com
+    signingkey = 95189B138B01C10DC955396A5AB4584E9FF44D46
+
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = gpg
+
+[tag]
+    forceSignAnnotated = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[github]
+	user = mjf-sunday

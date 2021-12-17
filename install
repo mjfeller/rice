@@ -12,7 +12,6 @@ shared()
 {
 	# Dotfiles used on all operating systems
 	copy dots/.config/emacs       $HOME/.config
-	copy dots/.config/git         $HOME/.config
 	copy dots/.config/lf          $HOME/.config
 	copy dots/.config/zsh         $HOME/.config
 	copy dots/.config/aliasrc     $HOME/.config
@@ -23,8 +22,10 @@ shared()
 linux()
 {
 	# Linux specific dotfiles
+	copy dots/.ssh/config                $HOME/.ssh
 	copy dots/.config/compton            $HOME/.config
 	copy dots/.config/dunst              $HOME/.config
+	copy dots/.config/git/config.linux   $HOME/.config/git/config
 	copy dots/.config/mpd                $HOME/.config
 	copy dots/.config/ncmpcpp            $HOME/.config
 	copy dots/.config/notmuch            $HOME/.config
@@ -39,6 +40,7 @@ macos()
 {
 	# macOS specific dotfiles
 	copy dots/.config/alacritty          $HOME/.config
+	copy dots/.config/git/config.macos   $HOME/.config/git/config
 	copy dots/.zshenv                    $HOME
 	copy dots/.local/share/gnupg/*.macos $HOME/.local/share/gnupg
 }
