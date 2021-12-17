@@ -1,6 +1,6 @@
 set shell sh
-set hidden
-set color256
+set hidden on
+set color256 on
 
 cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 
