@@ -1,5 +1,8 @@
-(resize-small)
-(mjf/center-window)
+(when (eq system-type 'darwin)
+  (resize-small)
+  (mjf/center-window)
+  (exec-path-from-shell-initialize))
+
 
 (setq-default mode-line-format
       '((:propertize " " face mode-line-height)
@@ -16,8 +19,6 @@
         mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
  (vc-mode vc-mode)
  "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
-
-(exec-path-from-shell-initialize)
 
 (setq elfeed-feeds
       `("https://thume.ca/atom.xml"

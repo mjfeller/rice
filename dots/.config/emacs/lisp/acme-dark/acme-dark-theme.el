@@ -59,7 +59,7 @@
 
 (let (
       ;; Primary Colors
-      (fg       "#d5d5d5")
+      (fg       "#ebdbb2")
       (fg-light "#f5f5f5")
       (fg-dark  "#c5c5c5")
       (bg       "#1a1a17")
