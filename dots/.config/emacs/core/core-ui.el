@@ -76,8 +76,6 @@
 
 (setq-default line-spacing 5)
 
-(global-display-line-numbers-mode)
-
 ;; add some padding around the entire frame and fringes
 (set-fringe-mode 25)
 (set-frame-parameter nil 'internal-border-width 0)

@@ -193,6 +193,17 @@ is already narrowed."
 (defun disable-line-numbers ()
   (display-line-numbers-mode -1))
 
+(defun mjf/pash-copy ()
+  (interactive)
+  (let ((arg (ivy-completing-read "" (mjf/pash-list))))
+    (shell-command-to-string (format "pash copy %s" arg))))
+
+(defun mjf/pash-list ()
+  (split-string
+   (shell-command-to-string "pash list") "\n"))
+
+(bind-keys ("M-P" . mjf/pash-copy))
+
 (provide 'core-defuns)
 
 ;;; core-defuns.el ends here

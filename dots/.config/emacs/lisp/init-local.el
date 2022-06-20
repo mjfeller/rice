@@ -3,22 +3,10 @@
   (mjf/center-window)
   (exec-path-from-shell-initialize))
 
-
-(setq-default mode-line-format
-      '((:propertize " " face mode-line-height)
-        "%e"
-        evil-mode-line-tag
-        mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
- (vc-mode vc-mode)
- "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
-
-(setq mode-line-format
-      '((:propertize " " face mode-line-height)
-        "%e"
-        evil-mode-line-tag
-        mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
- (vc-mode vc-mode)
- "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
+(use-package modus-themes
+              :config
+              (setq modus-themes-mode-line '(4 borderless))
+              (load-theme 'modus-vivendi))
 
 (setq elfeed-feeds
       `("https://thume.ca/atom.xml"
@@ -40,5 +28,9 @@
 (setq user-mail-address "mark@mfeller.io")
 (setq mml-secure-smime-sign-with-sender "mark@mfeller.io")
 (setq message-signature-file "~/.local/share/emacs/signature")
+
+(when (eq system-type 'darwin)
+  (setq user-mail-address "mfeller@squareup.com")
+  (setq mml-secure-smime-sign-with-sender "mfeller@squareup.com"))
 
 (provide 'init-local)

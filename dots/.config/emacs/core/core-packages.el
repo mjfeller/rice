@@ -157,10 +157,7 @@
                 " "
                 filename-and-process))))
 
-(use-package autopair
-  :delight (autopair-mode)
-  :config (autopair-global-mode))
-
+(electric-pair-mode t)
 (global-auto-revert-mode t)
 
 (use-package comment-dwim-2
@@ -251,6 +248,10 @@
 (add-hook 'woman-mode-hook 'disable-line-numbers)
 (add-hook 'Man-mode-hook 'disable-line-numbers)
 (add-hook 'compilation-mode-hook 'disable-line-numbers)
+
+(bind-keys
+ ("C-c C-j" . xref-show-definitions-function)
+ ("M-," . xref-go-back))
 
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()

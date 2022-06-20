@@ -43,8 +43,6 @@
   (setq magithub-api-timeout 5)
   (setq magithub-dir "~/.cache/magithub"))
 
-(use-package gitignore-mode)
-
 (use-package git-timemachine)
 
 (provide 'module-git)

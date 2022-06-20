@@ -8,6 +8,12 @@ copy()
 	cp -r "$1" "$2"
 }
 
+copy_file()
+{
+	printf "%-30s %s\n" "$1" "$2/$(basename $1)"
+	cp "$1" "$2"
+}
+
 shared()
 {
 	# Dotfiles used on all operating systems
@@ -16,7 +22,6 @@ shared()
 	copy dots/.config/zsh         $HOME/.config
 	copy dots/.config/aliasrc     $HOME/.config
 	copy dots/.local/bin          $HOME/.local
-	copy dots/.local/share/emacs  $HOME/.local/share
 }
 
 linux()
@@ -33,7 +38,9 @@ linux()
 	copy dots/.config/mimeapps.list      $HOME/.config
 	copy dots/.config/vis                $HOME/.config
 	copy dots/.config/x11                $HOME/.config
-	copy dots/.local/share/gnupg/gpg-agent.conf.linux $HOME/.local/share/gnupg/gpg-agent.conf
+
+	copy_file dots/.local/share/gnupg/gpg-agent.conf.linux $HOME/.local/share/gnupg/gpg-agent.conf
+	copy_file dots/.local/share/emacs/signature.linux      $HOME/.local/share/emacs/signature
 }
 
 macos()
@@ -42,7 +49,9 @@ macos()
 	copy dots/.config/alacritty          $HOME/.config
 	copy dots/.config/git/config.macos   $HOME/.config/git/config
 	copy dots/.zshenv                    $HOME
-	copy dots/.local/share/gnupg/gpg-agent.conf.macos $HOME/.local/share/gnupg/gpg-agent.conf
+
+	copy_file dots/.local/share/gnupg/gpg-agent.conf.macos $HOME/.local/share/gnupg/gpg-agent.conf
+	copy_file dots/.local/share/emacs/signature.macos      $HOME/.local/share/emacs/signature
 }
 
 openbsd()
@@ -52,7 +61,7 @@ openbsd()
 
 if [ -d "$rice_dir" ]; then
 	cd "$rice_dir"
-	git pull --ff-only
+	# git pull --ff-only
 else
 	mkdir -p ~/.config
 	git clone https://github.com/mjfeller/rice "$rice_dir"

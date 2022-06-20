@@ -30,15 +30,16 @@
   (if (not (eq (executable-find "go") nil))
       (progn
         (mapcar (lambda (pkg)
-                  (let ((cmd (concat "go get -u " pkg)))
+                  (let ((cmd (concat "go install " pkg)))
                     (call-process-shell-command cmd nil "*go-get-output*" t)))
-                '("github.com/nsf/gocode"
-                  "golang.org/x/tools/cmd/goimports"
-                  "github.com/rogpeppe/godef"
-                  "github.com/golang/lint"
-                  "golang.org/x/tools/cmd/gorename"
-                  "golang.org/x/tools/cmd/guru"
-                  "github.com/kisielk/errcheck")))
+                '("github.com/nsf/gocode@latest"
+                  "golang.org/x/tools/cmd/goimports@latest"
+                  "github.com/rogpeppe/godef@latest"
+                  "golang.org/x/lint@latest"
+                  "golang.org/x/tools/cmd/gorename@latest"
+                  "golang.org/x/tools/cmd/guru@latest"
+                  "github.com/kisielk/errcheck@latest"
+                  "golang.org/x/tools/gopls@latest")))
     (message "go executable not found, install go from https://golang.org/download")))
 
 (defun mjf/ginkgo-test (package)
@@ -70,6 +71,7 @@
   (company-mode))
 
 (use-package go-mode
+  :demand
   :bind
   (:map go-mode-map
         ("C-c C-g" . go-goto-imports)
@@ -79,7 +81,7 @@
 
   :init
   (unless (getenv "GOPATH")
-    (setenv "GOPATH" (concat (getenv "HOME") "/prog/go")))
+    (setenv "GOPATH" (concat (getenv "HOME") "/Development/go")))
 
   (setenv "PATH" (concat (getenv "PATH") ":"
                          (concat (getenv "GOPATH")"/bin")))
@@ -87,45 +89,48 @@
   :config
   (setq gofmt-command "goimports") ; use goimports instead of go-fmt
   (setq godoc-command "godoc")     ; use godoc instead of go doc
-  (setq tab-width 8)
+  (setq tab-width 4)
 
-  (add-hook 'go-mode-hook 'setup-go-mode-compile)
+  ;; (add-hook 'go-mode-hook 'eglot-ensure)
+  (add-hook 'go-mode-hook 'mjf/setup-go-mode-compile)
   (add-hook 'go-mode-hook 'subword-mode)
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  (add-hook 'go-mode-hook 'hs-minor-mode)
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  )
 
-(use-package go-add-tags
-  :after go-mode)
+;; (use-package go-add-tags
+;;   :after go-mode)
 
-(use-package go-errcheck
-  :after go-mode)
+;; (use-package go-errcheck
+;;   :after go-mode)
 
-(use-package go-stacktracer)
+;; (use-package go-stacktracer)
 
-(use-package go-guru
-  :after go-mode
-  :bind
-  (:map go-mode-map
-        ("M-."   . go-guru-definition)
-        ("C-c d" . go-guru-describe)))
+;; (use-package go-guru
+;;   :after go-mode
+;;   :bind
+;;   (:map go-mode-map
+;;         ("M-."   . go-guru-definition)
+;;         ("C-c d" . go-guru-describe)))
 
-(use-package company-go
-  :after (go-mode company)
-  :config
-  (add-hook 'go-mode-hook 'mjf/go-init-company))
+;; (use-package company-go
+;;   :demand
+;;   :config
+;;   (add-hook 'go-mode-hook 'mjf/go-init-company))
 
-(use-package go-eldoc
-  :after (go-mode eldoc)
-  :config
-  (add-hook 'go-mode-hook 'go-eldoc-setup))
+;; (use-package go-eldoc
+;;   :after (go-mode eldoc)
+;;   :config
+;;   (add-hook 'go-mode-hook 'go-eldoc-setup))
 
-(use-package flycheck-gometalinter
-  :disabled
-  :after (go-mode flycheck-mode)
-  :config
-  (flycheck-gometalinter-setup)
-  (setq flycheck-gometalinter-deadline "10s")
-  (setq flycheck-gometalinter-fast t)
-  (setq flycheck-gometalinter-disable-linters '("gotype" "gocyclo")))
+;; (use-package flycheck-gometalinter
+;;   :disabled
+;;   :after (go-mode flycheck-mode)
+;;   :config
+;;   (flycheck-gometalinter-setup)
+;;   (setq flycheck-gometalinter-deadline "10s")
+;;   (setq flycheck-gometalinter-fast t)
+;;   (setq flycheck-gometalinter-disable-linters '("gotype" "gocyclo")))
 
 (provide 'module-go)
 

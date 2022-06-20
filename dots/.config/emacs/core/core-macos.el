@@ -42,7 +42,8 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "GNUPGHOME")
-  (exec-path-from-shell-copy-env "NOTMUCH_CONFIG"))
+  (exec-path-from-shell-copy-env "NOTMUCH_CONFIG")
+  (exec-path-from-shell-copy-env "XDG_DOCUMENTS_DIR"))
 
 (defun finder ()
   "Opens file directory in Finder."

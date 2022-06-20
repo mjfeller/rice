@@ -18,7 +18,7 @@ git_prompt() {
     [ -z "$ref" ] || echo "%F{cyan}$ref%f "
 }
 kube_prompt() {
-    ctx=$([ -z "$KUBECTX" ] && { grep -m1 "current-context" $HOME/.kube/config | cut -d' ' -f2 2> /dev/null; } || echo "$KUBECTX" )
+    ctx=$([ -z "$KUBECTX" ] && [ -d $HOME/.kube ] && { grep -m1 "current-context" $HOME/.kube/config | cut -d' ' -f2 2> /dev/null; } || echo "$KUBECTX" )
     [ -z "$ctx" ] || echo -n "%F{green}$ctx%f "
     [ -z "$KUBENS" ] || echo -n "%F{blue}$KUBENS%f "
 }

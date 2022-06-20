@@ -47,27 +47,25 @@
   (add-hook 'org-mode-hook 'disable-line-numbers)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-  ;; where I keep all my org files
-  (setq org-agenda-files
-        '("~/org/work.org"
-          "~/org/life.org"))
+  (setq mjf/org-work-file (format "%s/work.org" (getenv "XDG_DOCUMENTS_DIR")))
+  (setq mjf/org-life-file (format "%s/life.org" (getenv "XDG_DOCUMENTS_DIR")))
 
   ;; personal capture templates
   (setq org-capture-templates
         '(
           ;; unfiled work items
-          ("w" "Work" entry (file+headline "~/org/work.org" "Unread")
+          ("w" "Work" entry (file+headline mjf/org-work-file "Unread")
            "* TODO %?\n  %i\n")
 
           ;; random thoughts I'd like to capture
-          ("t" "Thought" entry (file+headline "~/org/work.org" "Thoughts")
+          ("t" "Thought" entry (file+headline mjf/org-work-file "Thoughts")
            "* %?\n  %i\n")
 
           ;; unfiled work items in my life
-          ("l" "Life" entry (file+headline "~/org/life.org" "Inbox")
+          ("l" "Life" entry (file+headline mjf/org-life-file "Inbox")
            "* TODO %?\n  %i\n")
 
-          ("j" "Journal" entry (file+datetree "~/org/life.org")
+          ("j" "Journal" entry (file+datetree mjf/org-life-file)
            "* TODO %?\n")))
 
   ;; when refiling an org header don't search more than 3 levels deep
