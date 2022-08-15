@@ -77,7 +77,9 @@
 (setq-default line-spacing 5)
 
 ;; add some padding around the entire frame and fringes
-(set-fringe-mode 25)
+(if (eq system-type 'darwin)
+    (set-fringe-mode 0)
+  (set-fringe-mode 25))
 (set-frame-parameter nil 'internal-border-width 0)
 
 (provide 'core-ui)

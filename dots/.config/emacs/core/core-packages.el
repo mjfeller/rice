@@ -222,7 +222,7 @@
 ;; window management
 (if (eq system-type 'darwin)
     (setq window-management-prefix "H")
-  (setq window-management-prefix "S"))
+  (setq window-management-prefix "s"))
 
 (bind-keys
  ((concat window-management-prefix "-e") . windmove-up)
