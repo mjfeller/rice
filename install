@@ -53,7 +53,7 @@ openbsd() {
 
 if [ -d "$rice_dir" ]; then
     cd "$rice_dir"
-    # git pull --ff-only
+    git pull --ff-only
 else
     mkdir -p ~/.config
     git clone https://github.com/mjfeller/rice "$rice_dir"
