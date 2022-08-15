@@ -6,9 +6,9 @@
 
 (use-package multi-vterm
   :bind (("C-x p t" . multi-vterm-project)
-         ("H-T" . multi-vterm-dedicated-open)
-         ("H-u" . multi-vterm-next)
-         ("H-i" . multi-vterm-prev)
-         ("H-y" . multi-vterm)))
+         ((concat window-management-prefix "-T") . multi-vterm-dedicated-open)
+         ((concat window-management-prefix "-u") . multi-vterm-next)
+         ((concat window-management-prefix "-i") . multi-vterm-prev)
+         ((concat window-management-prefix "-y") . multi-vterm)))
 
 (provide 'module-vterm)
