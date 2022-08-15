@@ -44,3 +44,7 @@ export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/config
 
 export BOTO_CONFIG=$XDG_CONFIG_HOME/gcloud/boto
+
+export NVM_DIR=$XDG_CONFIG_HOME/nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

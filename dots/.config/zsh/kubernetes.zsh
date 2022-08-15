@@ -29,9 +29,23 @@ kn() {
     [ -z "$1" ] && unset KUBENS || export KUBENS=$1
 }
 
+knn() {
+    ns=$(kubectl get namespaces -o name | sed 's/^namespace\///' | fzf)
+    [ -z "$ns" ] || kn $ns
+}
+
 kge() {
     # Grab a list of all active generic environments
     kubectl --context=dev get ns -l sunday-env=generic --show-labels=true
+}
+
+kw() {
+    # Override the kubectl command to automatically apply flags based on
+    # environment variables.
+    command watch kubectl \
+            $([ -z "$KUBENS" ] || printf "--namespace=$KUBENS") \
+            $([ -z "$KUBECTX" ] || printf "--context=$KUBECTX") \
+            $@
 }
 
 kubectl() {

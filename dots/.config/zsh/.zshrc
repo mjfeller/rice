@@ -1,9 +1,9 @@
-source $HOME/.config/oh-my-zsh/oh-my-zsh.sh
-source $HOME/.config/zsh/fzf.zsh
-source $HOME/.config/zsh/kubernetes.zsh
-source $HOME/.config/zsh/terraform.zsh
-source $HOME/.config/zsh/gcloud.zsh
-source $HOME/.config/aliasrc
+source $XDG_CONFIG_HOME/oh-my-zsh/oh-my-zsh.sh
+source $XDG_CONFIG_HOME/zsh/fzf.zsh
+source $XDG_CONFIG_HOME/zsh/kubernetes.zsh
+source $XDG_CONFIG_HOME/zsh/terraform.zsh
+source $XDG_CONFIG_HOME/zsh/gcloud.zsh
+source $XDG_CONFIG_HOME/aliasrc
 
 # oh my zsh plugins
 plugins=(
@@ -12,6 +12,7 @@ plugins=(
     git
 )
 
+
 # setup prompt
 git_prompt() {
     ref=$(git_current_branch)
@@ -19,10 +20,14 @@ git_prompt() {
 }
 kube_prompt() {
     ctx=$([ -z "$KUBECTX" ] && [ -d $HOME/.kube ] && { grep -m1 "current-context" $HOME/.kube/config | cut -d' ' -f2 2> /dev/null; } || echo "$KUBECTX" )
+    ns=$KUBENS
     [ -z "$ctx" ] || echo -n "%F{green}$ctx%f "
-    [ -z "$KUBENS" ] || echo -n "%F{blue}$KUBENS%f "
+    [ -z "$ns" ] || echo -n "%F{blue}$ns%f "
 }
-PROMPT='%F{241}%2~%f $(kube_prompt)$(git_prompt)%B%F{241}$%b%f '
+setopt prompt_subst
+setopt transient_rprompt
+RPROMPT='$(kube_prompt)'
+PROMPT='%F{241}#%b%f '
 
 # history in cache directory
 HISTSIZE=10000
@@ -45,3 +50,7 @@ venv() {
         source venv/bin/activate
     fi
 }
+
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+fi
