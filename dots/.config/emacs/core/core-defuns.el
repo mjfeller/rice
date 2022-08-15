@@ -202,6 +202,17 @@ is already narrowed."
   (split-string
    (shell-command-to-string "pash list") "\n"))
 
+(defun mjf/focused ()
+  (interactive)
+  (if (bound-and-true-p olivetti-mode)
+      (progn
+        (olivetti-mode -1)
+        (setq mode-line-format (default-value 'mode-line-format)))
+    (progn
+      (delete-other-windows)
+      (olivetti-mode 1)
+      (setq mode-line-format nil))))
+
 (bind-keys ("M-P" . mjf/pash-copy))
 
 (provide 'core-defuns)

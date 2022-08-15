@@ -114,6 +114,7 @@
 (require 'module-projectile)
 (require 'module-python)
 (require 'module-restclient)
+(require 'module-vterm)
 (require 'module-yaml)
 (require 'module-yasnippet)
 
